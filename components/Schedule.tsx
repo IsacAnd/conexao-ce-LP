@@ -45,14 +45,18 @@ export default function Schedule() {
           Um dia de aprendizado, inovação e conexões.
         </p>
 
-        {/* Botão do dia */}
-        <div className="w-full max-w-3xl mb-10">
-          <button className="w-full py-3 rounded-2xl border border-neutral-600 text-lg font-semibold bg-[#248DA0] text-white shadow-[0_0_15px_rgba(36,141,160,0.6)] hover:bg-[#1d7688] transition">
-            13 de Dezembro
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <button className="px-6 py-2 rounded-full border border-neutral-700 text-sm text-neutral-400 hover:bg-neutral-700 transition">
+            Dia 13
+          </button>
+          <button className="px-6 py-2 rounded-full border border-neutral-700 text-sm text-neutral-400 hover:bg-neutral-700 transition">
+            Dia 14
+          </button>
+          <button className="px-6 py-2 rounded-full border border-neutral-700 text-sm bg-violet-700 text-white shadow-[0_0_12px_rgba(139,92,246,0.6)] transition">
+            Dia 15
           </button>
         </div>
 
-        {/* Lista da agenda */}
         <div className="w-full max-w-3xl space-y-4 transition-all duration-300">
           {schedule.map((item, index) => {
             const accentColor = index % 2 === 0 ? "#248DA0" : "#FFB237";
@@ -115,7 +119,6 @@ export default function Schedule() {
         </div>
       </div>
 
-      {/* Wave decorativa */}
       <div className="absolute bottom-0 right-0 w-[500px] md:w-[700px] opacity-90 pointer-events-none">
         <img src="/wave.png" alt="Wave decorativa" className="object-contain" />
       </div>
