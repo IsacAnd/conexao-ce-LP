@@ -4,10 +4,9 @@ import simbol from "@/public/simbol.png";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[var(--neutral-dark)] text-[var(--neutral-light)] py-8 mt-20 border-t border-white/10">
+    <footer className="w-full h-max bg-[var(--neutral-dark)] text-[var(--neutral-light)] py-8 border-t border-white/10">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         
-        {/* Esquerda: logo + texto */}
         <div className="flex items-center gap-3">
           <Image
             src={simbol}
@@ -21,7 +20,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Direita: links */}
         <div className="flex gap-6 text-sm font-outfit">
           <Link
             href="#privacidade"
