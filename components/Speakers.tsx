@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Twitter, Linkedin, Github } from "lucide-react";
+import Reveal from "./Reveal";
 
 export default function Speakers() {
   const speakers = [
@@ -30,18 +31,21 @@ export default function Speakers() {
   ];
 
   return (
-    <section className="bg-[#292929] py-20 px-4">
+    <section id="speakers" className="bg-[#292929] py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <Reveal>
+          <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-4">Palestrantes</h2>
           <p className="text-[#248DA0] text-xl">
             Aprenda com as melhores mentes da tecnologia.
           </p>
         </div>
+        </Reveal>
 
         {/* Speaker Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {speakers.map((speaker, index) => (
             <div
               key={index}
@@ -94,6 +98,7 @@ export default function Speakers() {
             </div>
           ))}
         </div>
+        </Reveal>
       </div>
     </section>
   );

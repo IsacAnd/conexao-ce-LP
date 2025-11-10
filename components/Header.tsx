@@ -10,7 +10,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="w-full fixed top-0 left-0 z-50 bg-[var(--neutral-dark)]/80 text-[var(--neutral-light)] shadow-sm backdrop-blur-sm">
+    <header className="w-full fixed top-0 left-0 z-50 p bg-[var(--neutral-dark)]/80 text-[var(--neutral-light)] shadow-sm backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
           <Image
             src={logo}
@@ -24,8 +24,8 @@ export default function Header() {
         <nav className="hidden md:flex space-x-8 font-outfit">
           <Link href="#sobre" className="hover:text-[var(--primary-accent)] transition">Sobre</Link>
           <Link href="#programacao" className="hover:text-[var(--primary-accent)] transition">Programação</Link>
-          <Link href="#inscricao" className="hover:text-[var(--primary-accent)] transition">Inscrição</Link>
-          <Link href="#contato" className="hover:text-[var(--primary-accent)] transition">Contato</Link>
+          <Link href="#location" className="hover:text-[var(--primary-accent)] transition">Localização</Link>
+          <Link href="#speakers" className="hover:text-[var(--primary-accent)] transition">Palestrantes</Link>
         </nav>
 
         <button

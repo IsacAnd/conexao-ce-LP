@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import simbol from "@/public/simbol.png";
+import Reveal from "./Reveal";
 
 export default function Location() {
   return (
-    <section className="relative flex justify-center items-center min-h-screen bg-[var(--neutral-dark)] overflow-hidden px-6">
-      <div className="absolute left-10 top-1/4 opacity-10 w-[400px] h-[400px] z-0">
+    <section id="location" className="relative flex justify-center items-center min-h-screen bg-[var(--neutral-dark)] overflow-hidden px-6">
+      <div className="absolute left-10 top-1/4 opacity-10 w-[500px] h-[500px] z-0">
         <Image
           src={simbol}
           alt="Logo do evento"
@@ -15,7 +16,8 @@ export default function Location() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-[rgba(255,255,255,0.12)]">
+      <Reveal>
+        <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-[rgba(255,255,255,0.12)]">
 
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center text-[#e8e8e8]">
           <h2 className="text-3xl font-bold mb-4 font-league-spartan text-[#f5d76e]">
@@ -47,6 +49,7 @@ export default function Location() {
           ></iframe>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

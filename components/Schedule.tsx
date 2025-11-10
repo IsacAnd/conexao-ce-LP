@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Clock, MapPin } from "lucide-react";
+import Reveal from "./Reveal";
 
 const schedule = [
   {
@@ -36,16 +37,21 @@ export default function Schedule() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative flex flex-col min-h-screen bg-[var(--neutral-dark)] text-neutral-light overflow-hidden">
+    <section id="programacao" className="relative flex flex-col min-h-screen bg-[var(--neutral-dark)] text-neutral-light overflow-hidden">
       <div className="relative z-10 flex flex-col items-center justify-center py-20 px-6">
-        <h2 className="text-5xl font-bold mb-2 text-white font-league-spartan">
-          Agenda do Evento
-        </h2>
-        <p className="text-neutral-300 mb-12 text-center max-w-md">
-          Um dia de aprendizado, inovação e conexões.
-        </p>
+        <Reveal>
+          <h2 className="text-5xl font-bold mb-2 text-white font-league-spartan">
+            Agenda do Evento
+          </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-neutral-300 mb-12 text-center max-w-md">
+            Um dia de aprendizado, inovação e conexões.
+          </p>
+        </Reveal>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <Reveal>
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button className="px-6 py-2 rounded-full border border-neutral-700 text-sm text-neutral-400 hover:bg-neutral-700 transition">
             Dia 13
           </button>
@@ -56,8 +62,10 @@ export default function Schedule() {
             Dia 15
           </button>
         </div>
+        </Reveal>
 
-        <div className="w-full max-w-3xl space-y-4 transition-all duration-300">
+        <Reveal>
+          <div className="w-full max-w-3xl space-y-4 transition-all duration-300">
           {schedule.map((item, index) => {
             const accentColor = index % 2 === 0 ? "#248DA0" : "#FFB237";
             const textColor = "#f9fafb";
@@ -117,9 +125,10 @@ export default function Schedule() {
             );
           })}
         </div>
+        </Reveal>
       </div>
 
-      <div className="absolute bottom-0 right-0 w-[500px] md:w-[700px] opacity-90 pointer-events-none">
+      <div className="absolute bottom-0 right-0 w-[700px] md:w-[900px] opacity-10 pointer-events-none">
         <img src="/wave.png" alt="Wave decorativa" className="object-contain" />
       </div>
     </section>
