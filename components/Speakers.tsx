@@ -31,7 +31,7 @@ export default function Speakers() {
   ];
 
   return (
-    <section id="speakers" className="bg-[#292929] py-20 px-4">
+    <section id="speakers" className="scroll-mt-15 bg-[#292929] py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <Reveal>

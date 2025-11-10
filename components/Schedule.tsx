@@ -37,7 +37,7 @@ export default function Schedule() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="programacao" className="relative flex flex-col min-h-screen bg-[var(--neutral-dark)] text-neutral-light overflow-hidden">
+    <section id="programacao" className="scroll-mt-15 relative flex flex-col min-h-screen bg-[var(--neutral-dark)] text-neutral-light overflow-hidden">
       <div className="relative z-10 flex flex-col items-center justify-center py-20 px-6">
         <Reveal>
           <h2 className="text-5xl font-bold mb-2 text-white font-league-spartan">
