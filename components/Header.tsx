@@ -43,8 +43,8 @@ export default function Header() {
           <ul className="flex flex-col items-center space-y-4 py-6 font-outfit">
             <li><Link href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</Link></li>
             <li><Link href="#programacao" onClick={() => setMenuOpen(false)}>Programação</Link></li>
-            <li><Link href="#inscricao" onClick={() => setMenuOpen(false)}>Inscrição</Link></li>
-            <li><Link href="#contato" onClick={() => setMenuOpen(false)}>Contato</Link></li>
+            <li><Link href="#location" onClick={() => setMenuOpen(false)}>Localização</Link></li>
+            <li><Link href="#speakers" onClick={() => setMenuOpen(false)}>Palestrantes</Link></li>
           </ul>
         </nav>
       )}

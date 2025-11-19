@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={`${leagueSpartan.variable} ${outfit.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
-        {children}
+          {children}
       </body>
     </html>
   );
