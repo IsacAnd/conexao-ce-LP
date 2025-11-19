@@ -22,10 +22,11 @@ export default function Header() {
           />
 
         <nav className="hidden md:flex space-x-8 font-outfit">
-          <Link href="#sobre" className="hover:text-[var(--primary-accent)] transition">Sobre</Link>
-          <Link href="#programacao" className="hover:text-[var(--primary-accent)] transition">Programação</Link>
-          <Link href="#location" className="hover:text-[var(--primary-accent)] transition">Localização</Link>
-          <Link href="#speakers" className="hover:text-[var(--primary-accent)] transition">Palestrantes</Link>
+          <Link href="#sobre" className="hover:text-[var(--secondary-accent)] transition">Sobre</Link>
+          <Link href="#programacao" className="hover:text-[var(--secondary-accent)] transition">Programação</Link>
+          <Link href="#location" className="hover:text-[var(--secondary-accent)] transition">Localização</Link>
+          <Link href="#speakers" className="hover:text-[var(--secondary-accent)] transition">Palestrantes</Link>
+          <Link href="https://www.instagram.com/portalconexaoceara/" className="hover:text-[var(--secondary-accent)] transition">MídiaKit</Link>
         </nav>
 
         <button
