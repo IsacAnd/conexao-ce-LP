@@ -9,7 +9,7 @@ interface HeroProps {
 }
 
 export default function Location({ isDark }: HeroProps) {
-  const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-white";
+  const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-neutral-50";
   const cardBg = isDark
     ? "bg-[rgba(255,255,255,0.08)]"
     : "bg-[rgba(0,0,0,0.05)]";

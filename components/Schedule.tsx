@@ -51,7 +51,7 @@ interface HeroProps {
 export default function Schedule({ isDark }: HeroProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-white";
+  const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-neutral-50";
   const textColor = isDark ? "text-neutral-light" : "text-neutral-dark";
   const borderColor = isDark
     ? "border-neutral-700/50"
