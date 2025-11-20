@@ -46,7 +46,7 @@ export default function Home() {
     <>
       <div className="flex flex-col min-h-screen">
         <Header isDark={isDark} toggleTheme={toggleTheme} />
-        <Hero isDark={isDark} />
+        <Hero />
         <Schedule isDark={isDark} />
         <Location isDark={isDark} />
         <Speakers isDark={isDark} />

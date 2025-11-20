@@ -3,8 +3,14 @@
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function BackToTop() {
+interface BackToTopProps {
+  isDark: boolean;
+}
+
+export default function BackToTop({isDark}: BackToTopProps) {
   const [visible, setVisible] = useState(false);
+
+  const bgColor = isDark ? "bg-[#248DA0]" : "bg-[#248DA0]"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +33,7 @@ export default function BackToTop() {
       onClick={scrollToTop}
       aria-label="Voltar ao topo"
       className={`cursor-pointer z-[1000]
-        fixed bottom-6 right-6 p-3 rounded-full shadow-lg bg-[#248DA0] transition-all duration-300 
+        fixed bottom-6 right-6 p-3 rounded-full shadow-lg ${bgColor} transition-all duration-300 
         ${
           visible
             ? "opacity-100 translate-y-0"
