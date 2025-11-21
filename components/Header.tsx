@@ -14,6 +14,13 @@ interface HeaderProps {
 export default function Header({ isDark, toggleTheme }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
+  const scrollToSection = (id: string) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
   return (
     <header
       className={`w-full fixed top-0 left-0 z-50 shadow-sm backdrop-blur-sm transition-colors duration-300 ${
@@ -33,56 +40,62 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
         />
 
         <nav className="hidden md:flex space-x-8 font-outfit items-center">
-          <Link
-            href="#sobre"
-            className={`transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Sobre
-          </Link>
-          <Link
-            href="#programacao"
-            className={`transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Programação
-          </Link>
-          <Link
-            href="#location"
-            className={`transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Localização
-          </Link>
-          <Link
-            href="#speakers"
-            className={`transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Palestrantes
-          </Link>
-          <Link
-            href="https://www.instagram.com/portalconexaoceara/"
-            className={`transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            MídiaKit
-          </Link>
+          <button
+  onClick={() => scrollToSection("sobre")}
+  className={`cursor-pointer transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  Sobre
+</button>
+
+<button
+  onClick={() => scrollToSection("programacao")}
+  className={`cursor-pointer transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  Programação
+</button>
+
+<button
+  onClick={() => scrollToSection("location")}
+  className={`cursor-pointer transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  Localização
+</button>
+
+<button
+  onClick={() => scrollToSection("speakers")}
+  className={`cursor-pointer transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  Palestrantes
+</button>
+
+<button
+  onClick={() => scrollToSection("registration")}
+  className={`cursor-pointer transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  Inscrição
+</button>
+
+<a
+  href="https://www.instagram.com/portalconexaoceara/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`transition ${
+    isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
+  }`}
+>
+  MídiaKit
+</a>
+
 
           {/* Botão de alternância de tema */}
           <button
@@ -103,7 +116,7 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-4 md:hidden">
-          {/* Botão de tema para mobile */}
+          
           <button
             onClick={toggleTheme}
             aria-label={isDark ? "Ativar light mode" : "Ativar dark mode"}
@@ -140,25 +153,34 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
         >
           <ul className="flex flex-col items-center space-y-4 py-6 font-outfit">
             <li>
-              <Link href="#sobre" onClick={() => setMenuOpen(false)}>
-                Sobre
-              </Link>
-            </li>
-            <li>
-              <Link href="#programacao" onClick={() => setMenuOpen(false)}>
-                Programação
-              </Link>
-            </li>
-            <li>
-              <Link href="#location" onClick={() => setMenuOpen(false)}>
-                Localização
-              </Link>
-            </li>
-            <li>
-              <Link href="#speakers" onClick={() => setMenuOpen(false)}>
-                Palestrantes
-              </Link>
-            </li>
+  <button onClick={() => { scrollToSection("sobre"); setMenuOpen(false); }}>
+    Sobre
+  </button>
+</li>
+
+<li>
+  <button onClick={() => { scrollToSection("programacao"); setMenuOpen(false); }}>
+    Programação
+  </button>
+</li>
+
+<li>
+  <button onClick={() => { scrollToSection("location"); setMenuOpen(false); }}>
+    Localização
+  </button>
+</li>
+
+<li>
+  <button onClick={() => { scrollToSection("speakers"); setMenuOpen(false); }}>
+    Palestrantes
+  </button>
+</li>
+
+<li>
+  <button onClick={() => { scrollToSection("registration"); setMenuOpen(false); }}>
+    Inscrição
+  </button>
+</li>
           </ul>
         </nav>
       )}

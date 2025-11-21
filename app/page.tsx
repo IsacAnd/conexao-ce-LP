@@ -8,6 +8,7 @@ import Schedule from "@/components/Schedule";
 import Location from "@/components/Location";
 import Speakers from "@/components/Speakers";
 import BackToTop from "@/components/BackToTop";
+import Registration from "@/components/Registration";
 
 export default function Home() {
   const [isDark, setIsDark] = useState<boolean>(true);
@@ -50,6 +51,7 @@ export default function Home() {
         <Schedule isDark={isDark} />
         <Location isDark={isDark} />
         <Speakers isDark={isDark} />
+        <Registration isDark={isDark} />
         <Footer isDark={isDark} />
       </div>
       <BackToTop isDark={isDark} />

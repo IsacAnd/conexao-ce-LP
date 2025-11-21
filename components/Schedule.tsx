@@ -69,7 +69,7 @@ export default function Schedule({ isDark }: HeroProps) {
               isDark ? "text-white" : "text-neutral-900"
             }`}
           >
-            Agenda do Evento
+            Programação
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
@@ -85,31 +85,13 @@ export default function Schedule({ isDark }: HeroProps) {
         <Reveal>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             <button
-              className={`px-6 py-2 rounded-full border text-sm transition ${
-                isDark
-                  ? "border-neutral-700 text-neutral-400 hover:bg-neutral-700"
-                  : "border-neutral-400 text-neutral-600 hover:bg-neutral-200"
-              }`}
-            >
-              Dia 13
-            </button>
-            <button
-              className={`px-6 py-2 rounded-full border text-sm transition ${
-                isDark
-                  ? "border-neutral-700 text-neutral-400 hover:bg-neutral-700"
-                  : "border-neutral-400 text-neutral-600 hover:bg-neutral-200"
-              }`}
-            >
-              Dia 14
-            </button>
-            <button
-              className={`px-6 py-2 rounded-full text-sm transition ${
+              className={`w-full max-w-3xl px-30 py-2 rounded-full text-lg font-bold transition ${
                 isDark
                   ? "bg-violet-700 text-white shadow-[0_0_12px_rgba(139,92,246,0.6)]"
                   : "bg-violet-600 text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
               }`}
             >
-              Dia 15
+              Dia 13
             </button>
           </div>
         </Reveal>
