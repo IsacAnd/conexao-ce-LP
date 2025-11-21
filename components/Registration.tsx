@@ -9,15 +9,22 @@ interface RegistrationProps {
 
 export default function Registration({ isDark }: RegistrationProps) {
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-neutral-50";
-  const titleColor = isDark ? "text-white" : "text-neutral-900";
-  const textColor = isDark ? "text-neutral-300" : "text-neutral-600";
+  const titleColor = isDark ? "text-white" : "text-black";
+  const textColor = isDark ? "text-neutral-300" : "text-neutral-800";
+  const placeholderColor = isDark
+    ? "placeholder-neutral-300"
+    : "placeholder-neutral-500";
+
+  const inputBg = isDark ? "bg-white/10 border-white/20" : "bg-white border-black/20";
+  const inputText = isDark ? "text-neutral-200" : "text-neutral-900";
+  const mailIconColor = isDark ? "text-neutral-300" : "text-neutral-500";
 
   return (
     <section
       id="registration"
-      className={`scroll-mt-15 relative w-full h-screen py-24 px-6 flex flex-col items-center overflow-hidden ${bgColor} transition-colors duration-300`}
+      className={`scroll-mt-15 relative w-full min-h-screen py-24 px-6 flex flex-col items-center overflow-hidden ${bgColor} transition-colors duration-300`}
     >
-
+      {/* Blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[900px] h-[900px] bg-[#248DA0]/20 rounded-full blur-[200px]" />
         <div className="absolute top-90 right-[-200px] w-[500px] h-[500px] bg-[#FFB237]/20 rounded-full blur-[180px]" />
@@ -38,25 +45,43 @@ export default function Registration({ isDark }: RegistrationProps) {
 
       <Reveal delay={0.25}>
         <form
-          className="w-full max-w-md flex flex-col gap-4 p-6 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 bg-white/5"
+          className={`w-full max-w-md flex flex-col gap-4 p-6 rounded-2xl shadow-xl backdrop-blur-md border ${
+            isDark ? "border-white/10 bg-white/5" : "border-black/10 bg-white/60"
+          }`}
         >
+          {/* Nome */}
           <div className="flex flex-col gap-1">
             <label className={`text-sm ${textColor}`}>Seu nome *</label>
             <input
               type="text"
-              className={`px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-[#248DA0] outline-none`}
+              className={`
+                px-4 py-3 rounded-xl outline-none
+                ${inputBg}
+                ${inputText}
+                ${placeholderColor}
+                focus:ring-2 focus:ring-[#248DA0]
+              `}
               placeholder="Digite seu nome"
               required
             />
           </div>
 
+          {/* Email */}
           <div className="flex flex-col gap-1">
             <label className={`text-sm ${textColor}`}>E-mail *</label>
             <div className="relative">
-              <Mail className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
+              <Mail
+                className={`w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 ${mailIconColor}`}
+              />
               <input
                 type="email"
-                className={`pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-[#248DA0] outline-none w-full`}
+                className={`
+                  pl-11 pr-4 py-3 rounded-xl w-full outline-none
+                  ${inputBg}
+                  ${inputText}
+                  ${placeholderColor}
+                  focus:ring-2 focus:ring-[#248DA0]
+                `}
                 placeholder="seuemail@gmail.com"
                 required
               />
