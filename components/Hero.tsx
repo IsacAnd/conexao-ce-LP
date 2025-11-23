@@ -4,7 +4,7 @@ import { Calendar, MapPin, Users } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center text-center min-h-screen w-full overflow-hidden bg-[#248DA0] text-white px-4">
+    <section id="about" className="relative flex flex-col items-center justify-center text-center min-h-screen w-full overflow-hidden bg-[#248DA0] text-white px-4">
       {/* --- BACKGROUND GRADIENTS (GLOWS) --- */}
       <div className="absolute inset-0">
         {/* glow central */}

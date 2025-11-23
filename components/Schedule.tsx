@@ -59,24 +59,22 @@ export default function Schedule({ isDark }: HeroProps) {
 
   return (
     <section
-      id="programacao"
+      id="schedule"
       className={`scroll-mt-15 relative flex flex-col min-h-screen ${bgColor} ${textColor} overflow-hidden transition-colors duration-300`}
     >
       <div className="relative z-10 flex flex-col items-center justify-center py-20 px-6">
         <Reveal>
           <h2
-            className={`text-5xl font-bold mb-2 font-league-spartan ${
-              isDark ? "text-white" : "text-neutral-900"
-            }`}
+            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
+              }`}
           >
             Programação
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
           <p
-            className={`mb-12 text-center max-w-md ${
-              isDark ? "text-neutral-300" : "text-neutral-600"
-            }`}
+            className={`mb-12 text-center max-w-md ${isDark ? "text-neutral-300" : "text-neutral-600"
+              }`}
           >
             Um dia de aprendizado, inovação e conexões.
           </p>
@@ -85,11 +83,10 @@ export default function Schedule({ isDark }: HeroProps) {
         <Reveal>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             <button
-              className={`w-full max-w-3xl px-30 py-2 rounded-full text-lg font-bold transition ${
-                isDark
+              className={`w-full max-w-3xl px-30 py-2 rounded-full text-lg font-bold transition ${isDark
                   ? "bg-violet-700 text-white shadow-[0_0_12px_rgba(139,92,246,0.6)]"
                   : "bg-violet-600 text-white shadow-[0_0_12px_rgba(124,58,237,0.4)]"
-              }`}
+                }`}
             >
               Dia 13
             </button>
@@ -120,16 +117,15 @@ export default function Schedule({ isDark }: HeroProps) {
                     transform: isHovered
                       ? "scale(1.05)"
                       : hoveredIndex !== null
-                      ? "scaleY(0.95)"
-                      : "scale(1)",
+                        ? "scaleY(0.95)"
+                        : "scale(1)",
                     opacity: hoveredIndex === null || isHovered ? 1 : 0.8,
                   }}
                 >
                   <div className="flex items-center gap-4">
                     <Clock
-                      className={`w-5 h-5 mt-1 ${
-                        isDark ? "text-neutral-300" : "text-neutral-600"
-                      }`}
+                      className={`w-5 h-5 mt-1 ${isDark ? "text-neutral-300" : "text-neutral-600"
+                        }`}
                     />
                     <div>
                       <p
@@ -158,18 +154,16 @@ export default function Schedule({ isDark }: HeroProps) {
 
                   <div className="mt-4 md:mt-0 flex items-center gap-4">
                     <span
-                      className={`font-mono text-sm ${
-                        isDark ? "text-neutral-200" : "text-neutral-700"
-                      }`}
+                      className={`font-mono text-sm ${isDark ? "text-neutral-200" : "text-neutral-700"
+                        }`}
                     >
                       {item.time}
                     </span>
                     <span
-                      className={`px-3 py-1 text-xs border rounded-full uppercase tracking-wide transition ${
-                        isDark
+                      className={`px-3 py-1 text-xs border rounded-full uppercase tracking-wide transition ${isDark
                           ? "bg-neutral-800/70 border-neutral-700 text-neutral-100"
                           : "bg-neutral-200/70 border-neutral-300 text-neutral-700"
-                      }`}
+                        }`}
                     >
                       {item.type}
                     </span>
