@@ -45,28 +45,39 @@ export default function Registration({ isDark }: RegistrationProps) {
 
       <Reveal delay={0.25}>
         <form
-          className={`w-full max-w-md flex flex-col gap-4 p-6 rounded-2xl shadow-xl backdrop-blur-md border ${
-            isDark ? "border-white/10 bg-white/5" : "border-black/10 bg-white/60"
-          }`}
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const form = e.currentTarget;
+            const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+            const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+
+            const symplaUrl = `https://www.sympla.com.br/seu-evento?nome=${encodeURIComponent(
+              name
+            )}&email=${encodeURIComponent(email)}`;
+
+            window.location.href = symplaUrl;
+          }}
+          className={`w-full max-w-md flex flex-col gap-4 p-6 rounded-2xl shadow-xl backdrop-blur-md border ${isDark ? "border-white/10 bg-white/5" : "border-black/10 bg-white/60"
+            }`}
         >
-          {/* Nome */}
           <div className="flex flex-col gap-1">
             <label className={`text-sm ${textColor}`}>Seu nome *</label>
             <input
+              name="name"
               type="text"
               className={`
-                px-4 py-3 rounded-xl outline-none
-                ${inputBg}
-                ${inputText}
-                ${placeholderColor}
-                focus:ring-2 focus:ring-[#248DA0]
-              `}
+        px-4 py-3 rounded-xl outline-none
+        ${inputBg}
+        ${inputText}
+        ${placeholderColor}
+        focus:ring-2 focus:ring-[#248DA0]
+      `}
               placeholder="Digite seu nome"
               required
             />
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label className={`text-sm ${textColor}`}>E-mail *</label>
             <div className="relative">
@@ -74,14 +85,15 @@ export default function Registration({ isDark }: RegistrationProps) {
                 className={`w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 ${mailIconColor}`}
               />
               <input
+                name="email"
                 type="email"
                 className={`
-                  pl-11 pr-4 py-3 rounded-xl w-full outline-none
-                  ${inputBg}
-                  ${inputText}
-                  ${placeholderColor}
-                  focus:ring-2 focus:ring-[#248DA0]
-                `}
+          pl-11 pr-4 py-3 rounded-xl w-full outline-none
+          ${inputBg}
+          ${inputText}
+          ${placeholderColor}
+          focus:ring-2 focus:ring-[#248DA0]
+        `}
                 placeholder="seuemail@gmail.com"
                 required
               />
