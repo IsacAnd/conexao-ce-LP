@@ -119,7 +119,7 @@ export default function Location({ isDark }: HeroProps) {
         <Reveal delay={0.3}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8">
             {/* Image Carousel/Slider */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900/10 group">
+            <div className="relative w-full h-[400px] lg:h-[450px] rounded-2xl overflow-hidden bg-neutral-900/10 group shadow-xl">
               {/* Imagens com AnimatePresence para transições suaves */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -211,30 +211,32 @@ export default function Location({ isDark }: HeroProps) {
 
             {/* Address Info Card */}
             <div
-              className={`${cardBg} backdrop-blur-lg border ${cardBorder} rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-colors duration-300`}
+              className={`${cardBg} backdrop-blur-lg border ${cardBorder} rounded-2xl p-6 h-[400px] lg:h-[450px] flex flex-col justify-between shadow-xl transition-colors duration-300`}
             >
               <div>
                 {/* Título */}
                 <h3
-                  className={`text-2xl font-bold mb-4 font-league-spartan text-center ${textAccent}`}
+                  className={`text-xl lg:text-2xl font-bold mb-3 lg:mb-4 font-league-spartan text-center ${textAccent}`}
                 >
                   Cadeia Criativa
                 </h3>
 
                 {/* Endereço */}
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-start gap-2 lg:gap-3 mb-3 lg:mb-4">
                   <MapPin
-                    className={`w-6 h-6 mt-1 shrink-0 ${
+                    className={`w-5 h-5 lg:w-6 lg:h-6 mt-1 shrink-0 ${
                       isDark ? "text-[#FFB237]" : "text-[#223a3f]"
                     }`}
                   />
                   <div>
                     <h4
-                      className={`text-lg font-bold mb-1 font-league-spartan ${textPrimary}`}
+                      className={`text-base lg:text-lg font-bold mb-1 font-league-spartan ${textPrimary}`}
                     >
                       Endereço
                     </h4>
-                    <p className={`text-base leading-relaxed ${textPrimary}`}>
+                    <p
+                      className={`text-sm lg:text-base leading-relaxed ${textPrimary}`}
+                    >
                       R. Des. Moreira da Rocha, 1030 <br />
                       Centro, Sobral - CE <br />
                       CEP: 62010-140
@@ -243,8 +245,10 @@ export default function Location({ isDark }: HeroProps) {
                 </div>
 
                 {/* Descrição */}
-                <div className={`pt-4 border-t ${cardBorder}`}>
-                  <p className={`text-base leading-relaxed ${textSecondary}`}>
+                <div className={`pt-3 lg:pt-4 border-t ${cardBorder}`}>
+                  <p
+                    className={`text-sm lg:text-base leading-relaxed ${textSecondary}`}
+                  >
                     Localizado no coração de Sobral, a Cadeia Criativa é um
                     espaço moderno e inovador, com ampla estrutura e fácil
                     acesso para todos os participantes do evento.
@@ -255,10 +259,10 @@ export default function Location({ isDark }: HeroProps) {
               {/* CTA Button */}
               <button
                 onClick={handleDirections}
-                className={`mt-6 w-full bg-[#FFB237] hover:bg-[#f5a623] text-white font-bold py-4 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all duration-300 ease-out hover:shadow-[0_0_20px_rgba(255,178,55,0.5)] hover:scale-105 cursor-pointer`}
+                className={`mt-4 lg:mt-6 w-full bg-[#FFB237] hover:bg-[#f5a623] text-white font-bold py-3 lg:py-4 px-4 lg:px-6 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all duration-300 ease-out hover:shadow-[0_0_20px_rgba(255,178,55,0.5)] hover:scale-105 cursor-pointer`}
               >
-                <span className="text-lg">Como chegar</span>
-                <ArrowUpRight className="w-5 h-5" />
+                <span className="text-base lg:text-lg">Como chegar</span>
+                <ArrowUpRight className="w-4 h-4 lg:w-5 lg:h-5" />
               </button>
             </div>
           </div>
