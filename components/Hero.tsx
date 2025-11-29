@@ -3,15 +3,23 @@
 import { Calendar, MapPin, Users } from "lucide-react";
 
 export default function Hero() {
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="about" className="relative flex flex-col items-center justify-center text-center min-h-screen w-full overflow-hidden bg-[#248DA0] text-white px-4">
-      {/* --- BACKGROUND GRADIENTS (GLOWS) --- */}
+
       <div className="absolute inset-0">
-        {/* glow central */}
+
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-300/20 rounded-full blur-[180px]" />
-        {/* glow lateral */}
+
         <div className="absolute bottom-0 right-[-200px] w-[600px] h-[600px] bg-teal-400/25 rounded-full blur-[200px]" />
-        {/* fundo gradiente geral */}
+
         <div className="absolute inset-0 bg-linear-to-b from-[#248DA0] via-[#1E7B8D] to-[#155E6C]" />
       </div>
 
@@ -46,10 +54,10 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-white text-[#155E6C] font-semibold hover:bg-cyan-100 px-6 py-3 rounded-full shadow-lg shadow-cyan-500/30 transition">
+          <button onClick={() => scrollToSection("registration")} className="bg-white text-[#155E6C] font-semibold hover:bg-cyan-100 px-6 py-3 rounded-full shadow-lg shadow-cyan-500/30 transition">
             Inscreva-se
           </button>
-          <button className="border border-white/60 text-white hover:bg-white/10 rounded-full px-6 py-3 transition">
+          <button onClick={() => scrollToSection("schedule")} className="border border-white/60 text-white hover:bg-white/10 rounded-full px-6 py-3 transition">
             Ver programação
           </button>
         </div>

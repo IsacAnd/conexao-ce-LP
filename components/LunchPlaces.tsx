@@ -83,6 +83,17 @@ const restaurants: Restaurant[] = [
     lat: -3.6875,
     lng: -40.352,
   },
+  {
+    id: 6,
+    name: "Tempero Self Service",
+    address: "Av. Dr. Guarany, 317 – Centro, Sobral, CE",
+    specialty: "Self-Service Econômico",
+    description:
+      "Opção acessível e muito popular para almoço. Oferece refeições simples, bem servidas e com ótimo custo-benefício.",
+    hours: "11h às 14h",
+    lat: -3.68694,
+    lng: -40.34753
+  }
 ];
 
 export default function LunchRecommendations({ isDark }: RestaurantProps) {
@@ -133,9 +144,8 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
       <div className="relative text-center z-10 w-full max-w-6xl">
         <Reveal>
           <h2
-            className={`text-5xl font-bold mb-2 font-league-spartan ${
-              isDark ? "text-white" : "text-neutral-900"
-            }`}
+            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
+              }`}
           >
             Locais Recomendados para Almoço
           </h2>
@@ -153,11 +163,10 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
               <button
                 key={restaurant.id}
                 onClick={() => setSelectedRestaurant(restaurant.id)}
-                className={`p-6 rounded-xl border transition-all duration-300 text-left ${
-                  selectedRestaurant === restaurant.id
-                    ? `${cardBg} border-[${textAccent}] shadow-lg ring-2 ring-violet-600`
-                    : `${cardBg} ${cardBorder} ${hoverBg}`
-                } ${cardBorder}`}
+                className={`p-6 rounded-xl border transition-all duration-300 text-left ${selectedRestaurant === restaurant.id
+                  ? `${cardBg} border-[${textAccent}] shadow-lg ring-2 ring-violet-600`
+                  : `${cardBg} ${cardBorder} ${hoverBg}`
+                  } ${cardBorder}`}
               >
                 <h3 className={`text-xl font-bold mb-2 ${textStrong}`}>
                   {restaurant.name}
@@ -166,7 +175,7 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
                   {restaurant.specialty}
                 </p>
                 <div
-                  className={`flex items-start gap-2 text-sm ${textSecondary}`}
+                  className={`flex items-start gap-2 text-sm text-left  ${textSecondary}`}
                 >
                   <MapPin size={16} className="flex-shrink-0 mt-0.5" />
                   <span>{restaurant.address}</span>
@@ -257,11 +266,10 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
                     )}+${encodeURIComponent(selectedRestaurantData.address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-6 block w-full py-3 px-4 rounded-lg font-semibold text-center transition-all ${
-                      isDark
-                        ? "bg-violet-600 hover:bg-violet-700 text-white"
-                        : "bg-violet-600 hover:bg-violet-700 text-white"
-                    }`}
+                    className={`mt-6 block w-full py-3 px-4 rounded-lg font-semibold text-center transition-all ${isDark
+                      ? "bg-violet-600 hover:bg-violet-700 text-white"
+                      : "bg-violet-600 hover:bg-violet-700 text-white"
+                      }`}
                   >
                     Ver Localização Completa
                   </a>
