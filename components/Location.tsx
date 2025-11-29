@@ -1,14 +1,43 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import simbol from "@/public/simbol.png";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import Reveal from "./Reveal";
+
+// Array de imagens do local
+const venueImages = [
+  {
+    src: "/imgs-cadeira-criativa/cadeia-criativa-aerea.jpg",
+    alt: "Cadeia Criativa - Vista Aérea",
+    priority: true,
+  },
+  {
+    src: "/imgs-cadeira-criativa/img-frente-cadeira-criativa.png",
+    alt: "Cadeia Criativa - Fachada Principal",
+    priority: false,
+  },
+  {
+    src: "/imgs-cadeira-criativa/img-lateral-cadeira-criativa.png",
+    alt: "Cadeia Criativa - Vista Lateral",
+    priority: false,
+  },
+  {
+    src: "/imgs-cadeira-criativa/interno-cadeira-criativa.png",
+    alt: "Cadeia Criativa - Espaço Interno",
+    priority: false,
+  },
+];
 
 interface HeroProps {
   isDark: boolean;
 }
 
 export default function Location({ isDark }: HeroProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-neutral-50";
   const cardBg = isDark
     ? "bg-[rgba(255,255,255,0.08)]"
@@ -18,17 +47,46 @@ export default function Location({ isDark }: HeroProps) {
     : "border-[rgba(0,0,0,0.08)]";
   const textPrimary = isDark ? "text-[#e8e8e8]" : "text-neutral-900";
   const textSecondary = isDark ? "text-[#d0d0d0b3]" : "text-neutral-600";
-  const textAccent = isDark ? "text-[#f5d76e]" : "text-violet-600";
-  const textStrong = isDark ? "text-[#ffffffcc]" : "text-neutral-800";
-  const mapFilter = isDark
-    ? "grayscale(40%) brightness(90%) contrast(110%)"
-    : "grayscale(0%) brightness(100%) contrast(100%)";
+  const textAccent = isDark ? "text-[#248DA0]" : "text-[#223a3f]";
+
+  // Navegação do carousel
+  const nextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % venueImages.length);
+  }, []);
+
+  const prevImage = useCallback(() => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? venueImages.length - 1 : prev - 1
+    );
+  }, []);
+
+  const goToImage = useCallback((index: number) => {
+    setCurrentImageIndex(index);
+    setIsAutoPlaying(false);
+  }, []);
+
+  // Auto-play do carousel
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(nextImage, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, nextImage]);
+
+  const handleDirections = () => {
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&destination=R.+Des.+Moreira+da+Rocha,+1030+-+Centro,+Sobral+-+CE,+62010-140",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
 
   return (
     <section
       id="location"
-      className={`relative flex justify-center items-center min-h-screen ${bgColor} overflow-hidden px-6 transition-colors duration-300`}
+      className={`scroll-mt-15 relative flex flex-col justify-center items-center min-h-screen ${bgColor} overflow-hidden px-6 py-20 transition-colors duration-300`}
     >
+      {/* Background decoration */}
       <div className="absolute left-10 top-1/4 opacity-10 w-[500px] h-[500px] z-0">
         <Image
           src={simbol}
@@ -37,46 +95,175 @@ export default function Location({ isDark }: HeroProps) {
           className="object-contain"
         />
       </div>
-      <Reveal>
-        <div
-          className={`relative z-10 w-full max-w-6xl flex flex-col md:flex-row ${cardBg} backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border ${cardBorder} transition-colors duration-300`}
-        >
-          <div
-            className={`w-full md:w-1/2 p-10 flex flex-col justify-center ${textPrimary}`}
-          >
+
+      <div className="relative z-10 w-full max-w-6xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <Reveal>
             <h2
-              className={`text-3xl font-bold mb-4 font-league-spartan ${textAccent}`}
+              className={`text-5xl font-bold mb-4 font-league-spartan ${
+                isDark ? "text-white" : "text-neutral-900"
+              }`}
             >
               Local do Evento
             </h2>
-            <p className="text-lg font-outfit leading-relaxed mb-6">
-              <strong className={textStrong}>Endereço:</strong> <br />
-              R. Des. Moreira da Rocha, 1030 <br />
-              Centro, Sobral - CE, 62010-140
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className={`text-xl ${textSecondary}`}>
+              Conheça onde o Conexão Ceará acontecerá
             </p>
-            <p className={`text-base ${textSecondary}`}>
-              Localizado no coração de Sobral, o evento acontecerá em um dos
-              principais pontos da cidade, com fácil acesso e ampla estrutura
-              para os participantes.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 h-[400px] md:h-auto">
-            <iframe
-              title="Localização do evento"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.6978595170025!2d-40.34926472418437!3d-3.688898896265692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ebd9ab5e2b8dfd%3A0xc51ce946edcf38dc!2sR.%20Des.%20Moreira%20da%20Rocha%2C%201030%20-%20Centro%2C%20Sobral%20-%20CE%2C%2062010-140!5e0!3m2!1spt-BR!2sbr!4v1730900000000!5m2!1spt-BR!2sbr"
-              width="100%"
-              height="100%"
-              style={{
-                border: 0,
-                filter: mapFilter,
-                transition: "filter 300ms ease-out",
-              }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+          </Reveal>
         </div>
-      </Reveal>
+
+        {/* Main Content Grid */}
+        <Reveal delay={0.3}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8">
+            {/* Image Carousel/Slider */}
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900/10 group">
+              {/* Imagens com AnimatePresence para transições suaves */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={venueImages[currentImageIndex].src}
+                    alt={venueImages[currentImageIndex].alt}
+                    fill
+                    priority={venueImages[currentImageIndex].priority}
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Botões de navegação - aparecem no hover */}
+              <button
+                onClick={() => {
+                  prevImage();
+                  setIsAutoPlaying(false);
+                }}
+                className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${
+                  isDark
+                    ? "bg-white/20 hover:bg-white/30"
+                    : "bg-black/20 hover:bg-black/30"
+                } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
+                aria-label="Imagem anterior"
+              >
+                <ChevronLeft
+                  className={isDark ? "text-white" : "text-black"}
+                  size={24}
+                />
+              </button>
+
+              <button
+                onClick={() => {
+                  nextImage();
+                  setIsAutoPlaying(false);
+                }}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${
+                  isDark
+                    ? "bg-white/20 hover:bg-white/30"
+                    : "bg-black/20 hover:bg-black/30"
+                } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
+                aria-label="Próxima imagem"
+              >
+                <ChevronRight
+                  className={isDark ? "text-white" : "text-black"}
+                  size={24}
+                />
+              </button>
+
+              {/* Indicadores (dots) */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {venueImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      index === currentImageIndex
+                        ? isDark
+                          ? "bg-white w-8"
+                          : "bg-black w-8"
+                        : isDark
+                        ? "bg-white/50 hover:bg-white/70"
+                        : "bg-black/50 hover:bg-black/70"
+                    }`}
+                    aria-label={`Ir para imagem ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Contador de imagens */}
+              <div
+                className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-sm font-medium ${
+                  isDark ? "bg-black/40 text-white" : "bg-white/40 text-black"
+                } backdrop-blur-sm`}
+              >
+                {currentImageIndex + 1} / {venueImages.length}
+              </div>
+            </div>
+
+            {/* Address Info Card */}
+            <div
+              className={`${cardBg} backdrop-blur-lg border ${cardBorder} rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-colors duration-300`}
+            >
+              <div>
+                {/* Título */}
+                <h3
+                  className={`text-2xl font-bold mb-4 font-league-spartan text-center ${textAccent}`}
+                >
+                  Cadeia Criativa
+                </h3>
+
+                {/* Endereço */}
+                <div className="flex items-start gap-3 mb-4">
+                  <MapPin
+                    className={`w-6 h-6 mt-1 shrink-0 ${
+                      isDark ? "text-[#FFB237]" : "text-[#223a3f]"
+                    }`}
+                  />
+                  <div>
+                    <h4
+                      className={`text-lg font-bold mb-1 font-league-spartan ${textPrimary}`}
+                    >
+                      Endereço
+                    </h4>
+                    <p className={`text-base leading-relaxed ${textPrimary}`}>
+                      R. Des. Moreira da Rocha, 1030 <br />
+                      Centro, Sobral - CE <br />
+                      CEP: 62010-140
+                    </p>
+                  </div>
+                </div>
+
+                {/* Descrição */}
+                <div className={`pt-4 border-t ${cardBorder}`}>
+                  <p className={`text-base leading-relaxed ${textSecondary}`}>
+                    Localizado no coração de Sobral, a Cadeia Criativa é um
+                    espaço moderno e inovador, com ampla estrutura e fácil
+                    acesso para todos os participantes do evento.
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={handleDirections}
+                className={`mt-6 w-full bg-[#FFB237] hover:bg-[#f5a623] text-white font-bold py-4 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all duration-300 ease-out hover:shadow-[0_0_20px_rgba(255,178,55,0.5)] hover:scale-105 cursor-pointer`}
+              >
+                <span className="text-lg">Como chegar</span>
+                <ArrowUpRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }
