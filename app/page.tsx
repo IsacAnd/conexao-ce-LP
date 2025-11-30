@@ -6,8 +6,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Location from "@/components/Location";
 import LunchPlaces from "@/components/LunchPlaces";
-import Schedule from "@/components/Schedule";
-import Speakers from "@/components/Speakers";
+import Registration from "@/components/Registration";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -48,11 +47,13 @@ export default function Home() {
       <div className="flex flex-col min-h-screen">
         <Header isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />
-        <Schedule isDark={isDark} />
+        {/* TODO: Implementar página de programação após fechar grade */}
+        {/* <Schedule isDark={isDark} /> */}
+        <Registration isDark={isDark} />
         <Location isDark={isDark} />
-        <Speakers isDark={isDark} />
+        {/* TODO: Implementar página de palestrantes após fechar grade */}
+        {/* <Speakers isDark={isDark} /> */}
         <LunchPlaces isDark={isDark} />
-        {/* <Registration isDark={isDark} /> */}
         <Footer isDark={isDark} />
       </div>
       <BackToTop isDark={isDark} />
