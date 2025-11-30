@@ -40,7 +40,8 @@ export default function Registration({ isDark }: RegistrationProps) {
           className={`max-w-2xl text-center mb-12 leading-relaxed ${textColor}`}
         >
           Escolha como você quer fazer parte do Conexão Ceará. Seja participante
-          ou compartilhe seu conhecimento como palestrante.
+          ou compartilhe seu conhecimento através de palestras, workshops,
+          painéis e muito mais.
         </p>
       </Reveal>
 
@@ -135,13 +136,14 @@ export default function Registration({ isDark }: RegistrationProps) {
               <h3
                 className={`text-2xl font-bold font-league-spartan ${titleColor}`}
               >
-                Seja Palestrante
+                Compartilhe Conhecimento
               </h3>
             </div>
 
             <p className={`mb-6 leading-relaxed ${textColor}`}>
               Compartilhe seu conhecimento e experiência com a comunidade tech
-              do Ceará. Submeta sua proposta de palestra.
+              do Ceará. Submeta sua proposta de palestra, mini-curso, painel,
+              workshop ou mesa redonda.
             </p>
 
             <ul className="space-y-3 mb-8 flex-grow">
@@ -160,7 +162,7 @@ export default function Registration({ isDark }: RegistrationProps) {
                   className="text-[#FFB237] mt-0.5 flex-shrink-0"
                 />
                 <span className={textColor}>
-                  Networking exclusivo com outros palestrantes
+                  Networking exclusivo com speakers e especialistas
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -169,7 +171,7 @@ export default function Registration({ isDark }: RegistrationProps) {
                   className="text-[#FFB237] mt-0.5 flex-shrink-0"
                 />
                 <span className={textColor}>
-                  Compartilhe sua experiência e inspire novos talentos
+                  Conduza palestras, workshops, painéis ou mesas redondas
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -177,21 +179,22 @@ export default function Registration({ isDark }: RegistrationProps) {
                   size={20}
                   className="text-[#FFB237] mt-0.5 flex-shrink-0"
                 />
-                <span className={textColor}>Certificado de palestrante</span>
+                <span className={textColor}>
+                  Certificado de speaker do evento
+                </span>
               </li>
             </ul>
 
-            {/* TODO: Substituir por Google Forms link amanhã */}
-            <button
-              disabled
-              className="w-full bg-[#FFB237]/50 text-white font-semibold py-4 rounded-xl shadow-lg cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2"
-              title="Call for Papers em breve"
+            <a
+              href="https://forms.gle/wcCPXjptEPPcv1RH6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#FFB237] hover:bg-[#f0a530] text-white font-semibold py-4 rounded-xl shadow-lg shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(255,178,55,0.4)] hover:scale-105"
             >
-              Em Breve
-            </button>
-            <p className={`text-center text-sm mt-3 ${textColor}`}>
-              Submissão de palestras abre em breve
-            </p>
+              Envie sua Proposta
+              <ExternalLink size={20} />
+            </a>
+            {/* TODO: Adicionar prazo de submissão quando definido */}
           </div>
         </div>
       </Reveal>
