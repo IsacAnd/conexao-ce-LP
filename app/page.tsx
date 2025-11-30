@@ -46,7 +46,7 @@ export default function Home() {
     <>
       <div className="flex flex-col min-h-screen">
         <Header isDark={isDark} toggleTheme={toggleTheme} />
-        <Hero />
+        <Hero isDark={isDark} />
         {/* TODO: Implementar página de programação após fechar grade */}
         {/* <Schedule isDark={isDark} /> */}
         <Registration isDark={isDark} />
