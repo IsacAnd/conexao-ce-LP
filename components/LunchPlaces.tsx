@@ -1,11 +1,19 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { MapPin, Clock, Phone, Instagram, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import simbol from "@/public/simbol.png";
-import Reveal from "./Reveal";
+import { motion } from "framer-motion";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Instagram,
+  MapPin,
+  Phone,
+  Star,
+} from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
+import Reveal from "./Reveal";
 
 interface RestaurantProps {
   isDark: boolean;
@@ -44,16 +52,16 @@ const getSpecialtyEmoji = (specialty: string): string => {
 const restaurants: Restaurant[] = [
   {
     id: 1,
-    name: "Tako",
-    address: "R. Dr. João do Monte, 814 – Centro, Sobral, CE",
+    name: "Tako Sushi Bar",
+    address: "R. Oriano Mendes, 94 - Centro, Sobral - CE, 62010-370",
     specialty: "Culinária Asiática",
     description:
       "Buffet variado com culinária brasileira e oriental. Excelente custo benefício para almoço em ambiente climatizado.",
-    phone: "(88) 3614-1234",
-    instagram: "takosobral",
-    hours: "11h às 14h30",
-    lat: -3.6878,
-    lng: -40.3516,
+    phone: "(88) 99273-7552",
+    instagram: "takosushiarco",
+    hours: "11h às 15h e de 18h às 0h Presencial",
+    lat: -3.6871209,
+    lng: -40.3458969,
   },
   {
     id: 2,
@@ -63,10 +71,10 @@ const restaurants: Restaurant[] = [
     description:
       "Especializado em carnes de qualidade. Picanha, carne de sol e pratos completos com atendimento atencioso.",
     phone: "(88) 3613-1499",
-    instagram: "picanhaecia",
-    hours: "11h às 15h",
-    lat: -3.6884,
-    lng: -40.351,
+    instagram: "picanhaeciasobral",
+    hours: "10:30h às 00:30h",
+    lat: -3.6923094,
+    lng: -40.3478309,
   },
   {
     id: 3,
@@ -77,9 +85,9 @@ const restaurants: Restaurant[] = [
       "Self-service com preço acessível. Cardápio variado e ambiente agradável. Ideal para almoço rápido e de qualidade.",
     phone: "(88) 3613-1709",
     instagram: "sescce",
-    hours: "Seg-Sex: 11h às 14h",
-    lat: -3.6892,
-    lng: -40.3508,
+    hours: "Seg-Sáb: 11h às 14h",
+    lat: -3.6922574,
+    lng: -40.3487365,
   },
   {
     id: 4,
@@ -90,9 +98,9 @@ const restaurants: Restaurant[] = [
       "Ambiente aconchegante com cardápio sofisticado. Ideal para um almoço tranquilo e de qualidade premium.",
     phone: "(88) 99687-0549",
     instagram: "alecrimbistrosobral",
-    hours: "11h às 15h",
-    lat: -3.6875,
-    lng: -40.352,
+    hours: "Ter-Sáb - 11h às 15h",
+    lat: -3.6880575,
+    lng: -40.3498679,
   },
   {
     id: 5,
@@ -101,24 +109,25 @@ const restaurants: Restaurant[] = [
     specialty: "Self-Service Econômico",
     description:
       "Opção acessível e muito popular para almoço. Oferece refeições simples, bem servidas e com ótimo custo-benefício.",
-    phone: "(88) 3611-1511",
+    phone: "(88) 99922-0041",
     instagram: "tempero_selfservice",
-    hours: "11h às 14h",
-    lat: -3.68694,
-    lng: -40.34753,
+    hours: "Sáb - 9:30h às 14:30h",
+    lat: -3.6844837,
+    lng: -40.3503072,
   },
   {
     id: 6,
     name: "Pousada e Restaurante Pontinho Verde",
-    address: "Sobral, CE",
+    address: "R. Cel. Rangel, 160, Sobral, Ceara 62010-030",
     specialty: "Pousada & Restaurante",
     description:
       "Restaurante aconchegante com opções variadas para almoço. Ambiente familiar e boa localização.",
-    phone: "(88) 99713-5165",
-    hours: "11h às 15h",
-    lat: -3.689,
-    lng: -40.351,
-    isPending: true,
+    phone: "(88) 997135165",
+    instagram: "restaurantepontinhoverdesobral",
+    hours: "10:30h às 11:30h",
+    lat: -3.6883713,
+    lng: -40.352464,
+    // isPending: true,
   },
 ];
 
@@ -169,7 +178,9 @@ function RestaurantCard({
       <div className="flex flex-col flex-1 min-h-0">
         <div className="p-6 space-y-3 flex-1 overflow-y-auto">
           {/* Name */}
-          <h3 className={`text-2xl font-bold font-league-spartan ${textStrong}`}>
+          <h3
+            className={`text-2xl font-bold font-league-spartan ${textStrong}`}
+          >
             {restaurant.name}
           </h3>
 
@@ -191,50 +202,49 @@ function RestaurantCard({
 
           {/* Info List */}
           <div className="space-y-2">
-          <div className="flex items-start gap-2 text-sm">
-            <MapPin size={16} className="mt-0.5 flex-shrink-0" />
-            <span className={textSecondary}>{restaurant.address}</span>
+            <div className="flex items-start gap-2 text-sm">
+              <MapPin size={16} className="mt-0.5 flex-shrink-0" />
+              <span className={textSecondary}>{restaurant.address}</span>
+            </div>
+
+            {restaurant.hours && (
+              <div className="flex items-center gap-2 text-sm">
+                <Clock size={16} />
+                <span className={textSecondary}>{restaurant.hours}</span>
+              </div>
+            )}
+
+            {restaurant.phone && (
+              <a
+                href={`tel:${restaurant.phone}`}
+                className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
+              >
+                <Phone size={16} />
+                <span>{restaurant.phone}</span>
+              </a>
+            )}
+
+            {restaurant.instagram && (
+              <a
+                href={`https://instagram.com/${restaurant.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
+              >
+                <Instagram size={16} />
+                <span>@{restaurant.instagram}</span>
+              </a>
+            )}
           </div>
 
-          {restaurant.hours && (
-            <div className="flex items-center gap-2 text-sm">
-              <Clock size={16} />
-              <span className={textSecondary}>{restaurant.hours}</span>
+          {/* Pending Warning */}
+          {restaurant.isPending && (
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 text-xs">
+              <span className="text-yellow-600 dark:text-yellow-400">
+                ⚠️ Informações em confirmação
+              </span>
             </div>
           )}
-
-          {restaurant.phone && (
-            <a
-              href={`tel:${restaurant.phone}`}
-              className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
-            >
-              <Phone size={16} />
-              <span>{restaurant.phone}</span>
-            </a>
-          )}
-
-          {restaurant.instagram && (
-            <a
-              href={`https://instagram.com/${restaurant.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
-            >
-              <Instagram size={16} />
-              <span>@{restaurant.instagram}</span>
-            </a>
-          )}
-        </div>
-
-        {/* Pending Warning */}
-        {restaurant.isPending && (
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 text-xs">
-            <span className="text-yellow-600 dark:text-yellow-400">
-              ⚠️ Informações em confirmação
-            </span>
-          </div>
-        )}
-
         </div>
 
         {/* CTA Buttons */}
@@ -268,29 +278,34 @@ function RestaurantCard({
 }
 
 export default function LunchRecommendations({ isDark }: RestaurantProps) {
-  const [scrollContainerElement, setScrollContainerElement] = useState<HTMLDivElement | null>(null);
+  const [scrollContainerElement, setScrollContainerElement] =
+    useState<HTMLDivElement | null>(null);
 
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-white";
   const textSecondary = isDark ? "text-[#d0d0d0b3]" : "text-neutral-600";
 
   const handlePrev = () => {
     if (scrollContainerElement) {
-      const cardWidth = scrollContainerElement.querySelector('.restaurant-card')?.clientWidth || 0;
+      const cardWidth =
+        scrollContainerElement.querySelector(".restaurant-card")?.clientWidth ||
+        0;
       const gap = 24; // gap-6 = 24px
       scrollContainerElement.scrollBy({
         left: -(cardWidth * 3 + gap * 3),
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   const handleNext = () => {
     if (scrollContainerElement) {
-      const cardWidth = scrollContainerElement.querySelector('.restaurant-card')?.clientWidth || 0;
+      const cardWidth =
+        scrollContainerElement.querySelector(".restaurant-card")?.clientWidth ||
+        0;
       const gap = 24; // gap-6 = 24px
       scrollContainerElement.scrollBy({
         left: cardWidth * 3 + gap * 3,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -362,9 +377,9 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
             ref={setScrollContainerElement}
             className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide pb-4 cursor-grab active:cursor-grabbing select-none -mx-6 px-6"
             style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              scrollSnapType: 'x proximity',
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              scrollSnapType: "x proximity",
             }}
             onMouseDown={(e) => {
               const container = e.currentTarget;
@@ -381,8 +396,8 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
               };
 
               const handleMouseUp = () => {
-                document.removeEventListener('mousemove', handleMouseMove);
-                document.removeEventListener('mouseup', handleMouseUp);
+                document.removeEventListener("mousemove", handleMouseMove);
+                document.removeEventListener("mouseup", handleMouseUp);
 
                 // Prevent click events if we were dragging
                 if (isDragging) {
@@ -392,15 +407,15 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
                 }
               };
 
-              document.addEventListener('mousemove', handleMouseMove);
-              document.addEventListener('mouseup', handleMouseUp);
+              document.addEventListener("mousemove", handleMouseMove);
+              document.addEventListener("mouseup", handleMouseUp);
             }}
           >
             {restaurants.map((restaurant) => (
               <div
                 key={restaurant.id}
                 className="restaurant-card flex-none w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-                style={{ scrollSnapAlign: 'start' }}
+                style={{ scrollSnapAlign: "start" }}
               >
                 <RestaurantCard restaurant={restaurant} isDark={isDark} />
               </div>
