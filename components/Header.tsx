@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
 import logo from "@/public/logo.png";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 interface HeaderProps {
   isDark: boolean;
@@ -23,10 +22,11 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 z-50 shadow-sm backdrop-blur-sm transition-colors duration-300 ${isDark
-        ? "bg-[var(--neutral-dark)]/80 text-[var(--neutral-light)]"
-        : "bg-white/80 text-[var(--neutral-dark)]"
-        }`}
+      className={`w-full fixed top-0 left-0 z-50 shadow-sm backdrop-blur-sm transition-colors duration-300 ${
+        isDark
+          ? "bg-[var(--neutral-dark)]/80 text-[var(--neutral-light)]"
+          : "bg-white/80 text-[var(--neutral-dark)]"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         <Image
@@ -41,63 +41,81 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
         <nav className="hidden md:flex space-x-8 font-outfit items-center">
           <button
             onClick={() => scrollToSection("about")}
-            className={`cursor-pointer transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             Sobre
           </button>
 
           <button
             onClick={() => scrollToSection("schedule")}
-            className={`cursor-pointer transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             Programação
           </button>
 
           <button
             onClick={() => scrollToSection("location")}
-            className={`cursor-pointer transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             Localização
           </button>
 
           <button
             onClick={() => scrollToSection("speakers")}
-            className={`cursor-pointer transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             Palestrantes
           </button>
 
           <button
             onClick={() => scrollToSection("registration")}
-            className={`cursor-pointer transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             Inscrição
           </button>
 
           <a
-            href="https://www.instagram.com/portalconexaoceara/"
+            href="https://drive.google.com/file/d/1HMmDMT0T2XloMW0mZO6C_5QD5kD7DYl4/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className={`transition ${isDark ? "hover:text-[var(--secondary-accent)]" : "hover:text-violet-600"
-              }`}
+            className={`transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
           >
             MídiaKit
           </a>
-
 
           {/* Botão de alternância de tema */}
           <button
             onClick={toggleTheme}
             aria-label={isDark ? "Ativar light mode" : "Ativar dark mode"}
-            className={`p-2 rounded-lg transition ${isDark
-              ? "bg-[var(--neutral-light)]/10 hover:bg-[var(--neutral-light)]/20"
-              : "bg-[var(--neutral-dark)]/10 hover:bg-[var(--neutral-dark)]/20"
-              }`}
+            className={`p-2 rounded-lg transition ${
+              isDark
+                ? "bg-[var(--neutral-light)]/10 hover:bg-[var(--neutral-light)]/20"
+                : "bg-[var(--neutral-dark)]/10 hover:bg-[var(--neutral-dark)]/20"
+            }`}
           >
             {isDark ? (
               <Sun size={20} className="text-yellow-400" />
@@ -108,14 +126,14 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-4 md:hidden">
-
           <button
             onClick={toggleTheme}
             aria-label={isDark ? "Ativar light mode" : "Ativar dark mode"}
-            className={`p-2 rounded-lg transition ${isDark
-              ? "bg-[var(--neutral-light)]/10 hover:bg-[var(--neutral-light)]/20"
-              : "bg-[var(--neutral-dark)]/10 hover:bg-[var(--neutral-dark)]/20"
-              }`}
+            className={`p-2 rounded-lg transition ${
+              isDark
+                ? "bg-[var(--neutral-light)]/10 hover:bg-[var(--neutral-light)]/20"
+                : "bg-[var(--neutral-dark)]/10 hover:bg-[var(--neutral-dark)]/20"
+            }`}
           >
             {isDark ? (
               <Sun size={20} className="text-yellow-400" />
@@ -136,38 +154,64 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
 
       {menuOpen && (
         <nav
-          className={`md:hidden border-t transition-colors duration-300 ${isDark
-            ? "bg-[var(--neutral-dark)] border-[var(--neutral-light)]/10"
-            : "bg-white border-[var(--neutral-dark)]/10"
-            }`}
+          className={`md:hidden border-t transition-colors duration-300 ${
+            isDark
+              ? "bg-[var(--neutral-dark)] border-[var(--neutral-light)]/10"
+              : "bg-white border-[var(--neutral-dark)]/10"
+          }`}
         >
           <ul className="flex flex-col items-center space-y-4 py-6 font-outfit">
             <li>
-              <button onClick={() => { scrollToSection("sobre"); setMenuOpen(false); }}>
+              <button
+                onClick={() => {
+                  scrollToSection("sobre");
+                  setMenuOpen(false);
+                }}
+              >
                 Sobre
               </button>
             </li>
 
             <li>
-              <button onClick={() => { scrollToSection("programacao"); setMenuOpen(false); }}>
+              <button
+                onClick={() => {
+                  scrollToSection("programacao");
+                  setMenuOpen(false);
+                }}
+              >
                 Programação
               </button>
             </li>
 
             <li>
-              <button onClick={() => { scrollToSection("location"); setMenuOpen(false); }}>
+              <button
+                onClick={() => {
+                  scrollToSection("location");
+                  setMenuOpen(false);
+                }}
+              >
                 Localização
               </button>
             </li>
 
             <li>
-              <button onClick={() => { scrollToSection("speakers"); setMenuOpen(false); }}>
+              <button
+                onClick={() => {
+                  scrollToSection("speakers");
+                  setMenuOpen(false);
+                }}
+              >
                 Palestrantes
               </button>
             </li>
 
             <li>
-              <button onClick={() => { scrollToSection("registration"); setMenuOpen(false); }}>
+              <button
+                onClick={() => {
+                  scrollToSection("registration");
+                  setMenuOpen(false);
+                }}
+              >
                 Inscrição
               </button>
             </li>
