@@ -130,12 +130,6 @@ export default function Hero({ isDark }: HeroProps) {
       </div>
 
       <div className="relative z-10 max-w-4xl">
-        <Reveal>
-          <div className="inline-block bg-white/10 text-cyan-200 text-sm px-4 py-1 rounded-full mb-4 border border-cyan-400/30 backdrop-blur-sm">
-            Dezembro 13, 2025
-          </div>
-        </Reveal>
-
         <Reveal delay={0.15}>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-[#FFB237] mb-4 drop-shadow-[0_0_25px_rgba(56,189,248,0.4)] font-league-spartan">
             Conexão Ceará
