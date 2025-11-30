@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import simbol from "@/public/simbol.png";
+import Image from "next/image";
 
 interface HeroProps {
   isDark: boolean;
@@ -35,7 +33,7 @@ export default function Footer({ isDark }: HeroProps) {
             reservados.
           </p>
         </div>
-        <div className="flex gap-6 text-sm font-outfit">
+        {/* <div className="flex gap-6 text-sm font-outfit">
           <Link
             href="#privacidade"
             className={`${linkHover} transition-colors`}
@@ -45,7 +43,7 @@ export default function Footer({ isDark }: HeroProps) {
           <Link href="#termos" className={`${linkHover} transition-colors`}>
             Termos de Uso
           </Link>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

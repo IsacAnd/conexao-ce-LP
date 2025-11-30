@@ -50,7 +50,8 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
             Sobre
           </button>
 
-          <button
+          {/* TODO: FINALIZAR PROGRAMACAO PARA LIBERAR ESSA SEÇÃO. */}
+          {/* <button
             onClick={() => scrollToSection("schedule")}
             className={`cursor-pointer transition ${
               isDark
@@ -59,6 +60,28 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
             }`}
           >
             Programação
+          </button> */}
+
+          {/* <button
+            onClick={() => scrollToSection("speakers")}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
+          >
+            Palestrantes
+          </button> */}
+
+          <button
+            onClick={() => scrollToSection("registration")}
+            className={`cursor-pointer transition ${
+              isDark
+                ? "hover:text-[var(--secondary-accent)]"
+                : "hover:text-violet-600"
+            }`}
+          >
+            Inscrição
           </button>
 
           <button
@@ -70,28 +93,6 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
             }`}
           >
             Localização
-          </button>
-
-          <button
-            onClick={() => scrollToSection("speakers")}
-            className={`cursor-pointer transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Palestrantes
-          </button>
-
-          <button
-            onClick={() => scrollToSection("registration")}
-            className={`cursor-pointer transition ${
-              isDark
-                ? "hover:text-[var(--secondary-accent)]"
-                : "hover:text-violet-600"
-            }`}
-          >
-            Inscrição
           </button>
 
           <a
@@ -172,7 +173,7 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
               </button>
             </li>
 
-            <li>
+            {/* <li>
               <button
                 onClick={() => {
                   scrollToSection("programacao");
@@ -180,6 +181,28 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
                 }}
               >
                 Programação
+              </button>
+            </li> */}
+
+            {/* <li>
+              <button
+                onClick={() => {
+                  scrollToSection("speakers");
+                  setMenuOpen(false);
+                }}
+              >
+                Palestrantes
+              </button>
+            </li> */}
+
+            <li>
+              <button
+                onClick={() => {
+                  scrollToSection("registration");
+                  setMenuOpen(false);
+                }}
+              >
+                Inscrição
               </button>
             </li>
 
@@ -191,28 +214,6 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
                 }}
               >
                 Localização
-              </button>
-            </li>
-
-            <li>
-              <button
-                onClick={() => {
-                  scrollToSection("speakers");
-                  setMenuOpen(false);
-                }}
-              >
-                Palestrantes
-              </button>
-            </li>
-
-            <li>
-              <button
-                onClick={() => {
-                  scrollToSection("registration");
-                  setMenuOpen(false);
-                }}
-              >
-                Inscrição
               </button>
             </li>
           </ul>
