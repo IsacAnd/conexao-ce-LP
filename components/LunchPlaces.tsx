@@ -1,9 +1,11 @@
 "use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { MapPin, Clock, Phone, Instagram, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import simbol from "@/public/simbol.png";
 import Reveal from "./Reveal";
-import { MapPin, Clock, Phone, Instagram } from "lucide-react";
+import { useState } from "react";
 
 interface RestaurantProps {
   isDark: boolean;
@@ -20,7 +22,24 @@ interface Restaurant {
   hours?: string;
   lat: number;
   lng: number;
+  rating?: number;
+  imageUrl?: string;
+  isPending?: boolean;
 }
+
+// Helper function para emojis por especialidade
+const getSpecialtyEmoji = (specialty: string): string => {
+  const emojiMap: Record<string, string> = {
+    "Culinária Asiática": "🍜",
+    "Carnes Especializadas": "🥩",
+    "Self-Service": "🍽️",
+    "Espetinhos & Bebidas": "🍢",
+    "Culinária Sofisticada": "🍷",
+    "Self-Service Econômico": "🍱",
+    "Pousada & Restaurante": "🏨",
+  };
+  return emojiMap[specialty] || "🍴";
+};
 
 const restaurants: Restaurant[] = [
   {
@@ -56,75 +75,224 @@ const restaurants: Restaurant[] = [
     specialty: "Self-Service",
     description:
       "Self-service com preço acessível. Cardápio variado e ambiente agradável. Ideal para almoço rápido e de qualidade.",
+    phone: "(88) 3613-1709",
+    instagram: "sescce",
     hours: "Seg-Sex: 11h às 14h",
     lat: -3.6892,
     lng: -40.3508,
   },
   {
     id: 4,
-    name: "Bolero Blues Rango Bar",
-    address: "R. Dr. João do Monte, 920 – Centro, Sobral, CE",
-    specialty: "Espetinhos & Bebidas",
-    description:
-      "Ambiente descontraído com excelente variedade de espetos e bebidas. Ótima opção para almoço em grupo.",
-    phone: "(88) 3614-5678",
-    hours: "11h às 23h",
-    lat: -3.688,
-    lng: -40.3515,
-  },
-  {
-    id: 5,
     name: "Alecrim Bistrô",
     address: "Rua Dr. João do Monte, 990 – Centro, Sobral, CE",
     specialty: "Culinária Sofisticada",
     description:
       "Ambiente aconchegante com cardápio sofisticado. Ideal para um almoço tranquilo e de qualidade premium.",
+    phone: "(88) 99687-0549",
+    instagram: "alecrimbistrosobral",
     hours: "11h às 15h",
     lat: -3.6875,
     lng: -40.352,
   },
   {
-    id: 6,
+    id: 5,
     name: "Tempero Self Service",
     address: "Av. Dr. Guarany, 317 – Centro, Sobral, CE",
     specialty: "Self-Service Econômico",
     description:
       "Opção acessível e muito popular para almoço. Oferece refeições simples, bem servidas e com ótimo custo-benefício.",
+    phone: "(88) 3611-1511",
+    instagram: "tempero_selfservice",
     hours: "11h às 14h",
     lat: -3.68694,
-    lng: -40.34753
-  }
+    lng: -40.34753,
+  },
+  {
+    id: 6,
+    name: "Pousada e Restaurante Pontinho Verde",
+    address: "Sobral, CE",
+    specialty: "Pousada & Restaurante",
+    description:
+      "Restaurante aconchegante com opções variadas para almoço. Ambiente familiar e boa localização.",
+    phone: "(88) 99713-5165",
+    hours: "11h às 15h",
+    lat: -3.689,
+    lng: -40.351,
+    isPending: true,
+  },
 ];
 
-export default function LunchRecommendations({ isDark }: RestaurantProps) {
-  const [selectedRestaurant, setSelectedRestaurant] = useState<number | null>(
-    1
+// Componente do Card (inline)
+function RestaurantCard({
+  restaurant,
+  isDark,
+}: {
+  restaurant: Restaurant;
+  isDark: boolean;
+}) {
+  const textStrong = isDark ? "text-[#ffffffcc]" : "text-neutral-800";
+  const textSecondary = isDark ? "text-[#d0d0d0b3]" : "text-neutral-600";
+  const textAccent = isDark ? "text-[#7FC7D0]" : "text-[#248DA0]";
+
+  return (
+    <motion.div
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className={`rounded-xl overflow-hidden shadow-lg transition-shadow duration-300 h-[650px] flex flex-col ${
+        isDark ? "bg-[rgba(255,255,255,0.08)]" : "bg-white"
+      } hover:shadow-2xl`}
+    >
+      {/* Image Section */}
+      <div className="relative h-48 w-full bg-gradient-to-br from-[#248DA0] to-[#1a6d7d] flex-shrink-0">
+        {restaurant.imageUrl ? (
+          <Image
+            src={restaurant.imageUrl}
+            alt={restaurant.name}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full text-6xl">
+            {getSpecialtyEmoji(restaurant.specialty)}
+          </div>
+        )}
+
+        {/* Rating Badge (se disponível) */}
+        {restaurant.rating && (
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur px-3 py-1.5 rounded-full flex items-center gap-1">
+            <Star className="fill-yellow-400 text-yellow-400" size={16} />
+            <span className="font-semibold text-sm">{restaurant.rating}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Content Section */}
+      <div className="flex flex-col flex-1 min-h-0">
+        <div className="p-6 space-y-3 flex-1 overflow-y-auto">
+          {/* Name */}
+          <h3 className={`text-2xl font-bold font-league-spartan ${textStrong}`}>
+            {restaurant.name}
+          </h3>
+
+          {/* Specialty Badge */}
+          <div
+            className={`inline-flex px-3 py-1 rounded-full text-sm font-semibold ${
+              isDark
+                ? "bg-[#FFB237]/20 text-[#FFB237]"
+                : "bg-[#248DA0]/10 text-[#248DA0]"
+            }`}
+          >
+            {restaurant.specialty}
+          </div>
+
+          {/* Description */}
+          <p className={`text-sm leading-relaxed ${textSecondary}`}>
+            {restaurant.description}
+          </p>
+
+          {/* Info List */}
+          <div className="space-y-2">
+          <div className="flex items-start gap-2 text-sm">
+            <MapPin size={16} className="mt-0.5 flex-shrink-0" />
+            <span className={textSecondary}>{restaurant.address}</span>
+          </div>
+
+          {restaurant.hours && (
+            <div className="flex items-center gap-2 text-sm">
+              <Clock size={16} />
+              <span className={textSecondary}>{restaurant.hours}</span>
+            </div>
+          )}
+
+          {restaurant.phone && (
+            <a
+              href={`tel:${restaurant.phone}`}
+              className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
+            >
+              <Phone size={16} />
+              <span>{restaurant.phone}</span>
+            </a>
+          )}
+
+          {restaurant.instagram && (
+            <a
+              href={`https://instagram.com/${restaurant.instagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-2 text-sm ${textAccent} hover:underline`}
+            >
+              <Instagram size={16} />
+              <span>@{restaurant.instagram}</span>
+            </a>
+          )}
+        </div>
+
+        {/* Pending Warning */}
+        {restaurant.isPending && (
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 text-xs">
+            <span className="text-yellow-600 dark:text-yellow-400">
+              ⚠️ Informações em confirmação
+            </span>
+          </div>
+        )}
+
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex gap-3 p-6 pt-0 flex-shrink-0">
+          <a
+            href={`https://www.google.com/maps/search/${encodeURIComponent(
+              restaurant.name
+            )}+${encodeURIComponent(restaurant.address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 py-2.5 px-4 bg-[#248DA0] hover:bg-[#1f7e8f] text-white rounded-lg font-semibold text-center transition-colors"
+          >
+            Ver no Maps
+          </a>
+          {restaurant.phone && (
+            <a
+              href={`tel:${restaurant.phone}`}
+              className={`py-2.5 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20 text-white"
+                  : "bg-neutral-100 hover:bg-neutral-200 text-neutral-900"
+              }`}
+            >
+              <Phone size={20} />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
+}
+
+export default function LunchRecommendations({ isDark }: RestaurantProps) {
+  const [scrollContainerElement, setScrollContainerElement] = useState<HTMLDivElement | null>(null);
 
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-white";
-  const cardBg = isDark
-    ? "bg-[rgba(255,255,255,0.08)]"
-    : "bg-[rgba(0,0,0,0.05)]";
-  const cardBorder = isDark
-    ? "border-[rgba(255,255,255,0.12)]"
-    : "border-[rgba(0,0,0,0.08)]";
-  const textPrimary = isDark ? "text-[#e8e8e8]" : "text-neutral-900";
   const textSecondary = isDark ? "text-[#d0d0d0b3]" : "text-neutral-600";
-  const textAccent = isDark ? "text-[#f5d76e]" : "text-violet-600";
-  const textStrong = isDark ? "text-[#ffffffcc]" : "text-neutral-800";
-  const hoverBg = isDark
-    ? "hover:bg-[rgba(255,255,255,0.12)]"
-    : "hover:bg-[rgba(0,0,0,0.08)]";
 
-  const selectedRestaurantData = restaurants.find(
-    (r) => r.id === selectedRestaurant
-  );
+  const handlePrev = () => {
+    if (scrollContainerElement) {
+      const cardWidth = scrollContainerElement.querySelector('.restaurant-card')?.clientWidth || 0;
+      const gap = 24; // gap-6 = 24px
+      scrollContainerElement.scrollBy({
+        left: -(cardWidth * 3 + gap * 3),
+        behavior: 'smooth'
+      });
+    }
+  };
 
-  const generateMapUrl = (lat: number, lng: number, name: string) => {
-    const zoom = 16;
-    return `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3920.697859517001!2d${lng}!3d${lat}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${encodeURIComponent(
-      name
-    )}!5e0!3m2!1spt-BR!2sbr!4v1700000000000`;
+  const handleNext = () => {
+    if (scrollContainerElement) {
+      const cardWidth = scrollContainerElement.querySelector('.restaurant-card')?.clientWidth || 0;
+      const gap = 24; // gap-6 = 24px
+      scrollContainerElement.scrollBy({
+        left: cardWidth * 3 + gap * 3,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -132,6 +300,7 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
       id="lunch"
       className={`relative flex justify-center items-center min-h-screen ${bgColor} overflow-hidden px-6 transition-colors duration-300 py-20`}
     >
+      {/* Background Symbol */}
       <div className="absolute right-10 top-1/3 opacity-10 w-[500px] h-[500px] z-0">
         <Image
           src={simbol}
@@ -141,15 +310,19 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
         />
       </div>
 
-      <div className="relative text-center z-10 w-full max-w-6xl">
+      <div className="relative text-center z-10 w-full max-w-7xl">
+        {/* Title */}
         <Reveal>
           <h2
-            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
-              }`}
+            className={`text-5xl font-bold mb-2 font-league-spartan ${
+              isDark ? "text-white" : "text-neutral-900"
+            }`}
           >
             Locais Recomendados para Almoço
           </h2>
         </Reveal>
+
+        {/* Subtitle */}
         <Reveal>
           <p className={`text-center mb-12 ${textSecondary} text-lg`}>
             Confira as melhores opções de restaurantes no centro de Sobral, a
@@ -157,125 +330,81 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="flex flex-col gap-4">
+        {/* Carousel Container */}
+        <div className="relative px-12 lg:px-20">
+          {/* Navigation Buttons */}
+          <button
+            onClick={handlePrev}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
+              isDark
+                ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
+                : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
+            }`}
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
+              isDark
+                ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
+                : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
+            }`}
+            aria-label="Próximo"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Scroll Horizontal Container */}
+          <div
+            ref={setScrollContainerElement}
+            className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide pb-4 cursor-grab active:cursor-grabbing select-none -mx-6 px-6"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              scrollSnapType: 'x proximity',
+            }}
+            onMouseDown={(e) => {
+              const container = e.currentTarget;
+              const startX = e.pageX - container.offsetLeft;
+              const scrollLeft = container.scrollLeft;
+              let isDragging = false;
+
+              const handleMouseMove = (e: MouseEvent) => {
+                isDragging = true;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 2;
+                container.scrollLeft = scrollLeft - walk;
+              };
+
+              const handleMouseUp = () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+
+                // Prevent click events if we were dragging
+                if (isDragging) {
+                  setTimeout(() => {
+                    isDragging = false;
+                  }, 10);
+                }
+              };
+
+              document.addEventListener('mousemove', handleMouseMove);
+              document.addEventListener('mouseup', handleMouseUp);
+            }}
+          >
             {restaurants.map((restaurant) => (
-              <button
-                key={restaurant.id}
-                onClick={() => setSelectedRestaurant(restaurant.id)}
-                className={`p-6 rounded-xl border transition-all duration-300 text-left ${selectedRestaurant === restaurant.id
-                  ? `${cardBg} border-[${textAccent}] shadow-lg ring-2 ring-violet-600`
-                  : `${cardBg} ${cardBorder} ${hoverBg}`
-                  } ${cardBorder}`}
-              >
-                <h3 className={`text-xl font-bold mb-2 ${textStrong}`}>
-                  {restaurant.name}
-                </h3>
-                <p className={`text-sm mb-3 ${textAccent} font-semibold`}>
-                  {restaurant.specialty}
-                </p>
-                <div
-                  className={`flex items-start gap-2 text-sm text-left  ${textSecondary}`}
-                >
-                  <MapPin size={16} className="flex-shrink-0 mt-0.5" />
-                  <span>{restaurant.address}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div>
-            {selectedRestaurantData ? (
               <div
-                className={`${cardBg} border ${cardBorder} rounded-xl overflow-hidden shadow-xl transition-all duration-300`}
+                key={restaurant.id}
+                className="restaurant-card flex-none w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                style={{ scrollSnapAlign: 'start' }}
               >
-                <a
-                  href={`https://www.google.com/maps/search/${encodeURIComponent(
-                    selectedRestaurantData.name
-                  )}+${encodeURIComponent(selectedRestaurantData.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-64 w-full bg-gradient-to-br from-violet-600 to-violet-800 flex items-center justify-center hover:from-violet-700 hover:to-violet-900 transition-all cursor-pointer"
-                >
-                  <div className="text-center text-white">
-                    <div className="text-7xl mb-3">📍</div>
-                    <p className="text-xl font-semibold mb-2">
-                      Abrir no Google Maps
-                    </p>
-                    <p className="text-sm opacity-90">
-                      Clique para ver mapa, rotas e avaliações
-                    </p>
-                  </div>
-                </a>
-
-                <div className="p-6">
-                  <h3 className={`text-2xl font-bold mb-4 ${textPrimary}`}>
-                    {selectedRestaurantData.name}
-                  </h3>
-
-                  <p className={`mb-6 leading-relaxed ${textSecondary}`}>
-                    {selectedRestaurantData.description}
-                  </p>
-
-                  <div className="space-y-4">
-                    <div className={`flex items-start gap-3 ${textSecondary}`}>
-                      <MapPin size={18} className="flex-shrink-0 mt-0.5" />
-                      <div className="flex flex-col">
-                        <span className="font-semibold text-sm">
-                          {selectedRestaurantData.name}
-                        </span>
-                        <span>{selectedRestaurantData.address}</span>
-                      </div>
-                    </div>
-
-                    {selectedRestaurantData.hours && (
-                      <div
-                        className={`flex items-center gap-3 ${textSecondary}`}
-                      >
-                        <Clock size={18} className="flex-shrink-0" />
-                        <span>{selectedRestaurantData.hours}</span>
-                      </div>
-                    )}
-
-                    {selectedRestaurantData.phone && (
-                      <a
-                        href={`tel:${selectedRestaurantData.phone}`}
-                        className={`flex items-center gap-3 ${textAccent} hover:underline transition-all`}
-                      >
-                        <Phone size={18} />
-                        <span>{selectedRestaurantData.phone}</span>
-                      </a>
-                    )}
-
-                    {selectedRestaurantData.instagram && (
-                      <a
-                        href={`https://instagram.com/${selectedRestaurantData.instagram}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center gap-3 ${textAccent} hover:underline transition-all`}
-                      >
-                        <Instagram size={18} />
-                        <span>@{selectedRestaurantData.instagram}</span>
-                      </a>
-                    )}
-                  </div>
-
-                  <a
-                    href={`https://www.google.com/maps/search/${encodeURIComponent(
-                      selectedRestaurantData.name
-                    )}+${encodeURIComponent(selectedRestaurantData.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`mt-6 block w-full py-3 px-4 rounded-lg font-semibold text-center transition-all ${isDark
-                      ? "bg-violet-600 hover:bg-violet-700 text-white"
-                      : "bg-violet-600 hover:bg-violet-700 text-white"
-                      }`}
-                  >
-                    Ver Localização Completa
-                  </a>
-                </div>
+                <RestaurantCard restaurant={restaurant} isDark={isDark} />
               </div>
-            ) : null}
+            ))}
           </div>
         </div>
       </div>
