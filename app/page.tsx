@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import Schedule from "@/components/Schedule";
-import Location from "@/components/Location";
-import Speakers from "@/components/Speakers";
 import BackToTop from "@/components/BackToTop";
-import Registration from "@/components/Registration";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Location from "@/components/Location";
 import LunchPlaces from "@/components/LunchPlaces";
+import Schedule from "@/components/Schedule";
+import Speakers from "@/components/Speakers";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isDark, setIsDark] = useState<boolean>(true);
@@ -53,7 +52,7 @@ export default function Home() {
         <Location isDark={isDark} />
         <Speakers isDark={isDark} />
         <LunchPlaces isDark={isDark} />
-        <Registration isDark={isDark} />
+        {/* <Registration isDark={isDark} /> */}
         <Footer isDark={isDark} />
       </div>
       <BackToTop isDark={isDark} />
