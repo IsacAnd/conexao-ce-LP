@@ -96,7 +96,7 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
           </button>
 
           <a
-            href="https://drive.google.com/file/d/1HMmDMT0T2XloMW0mZO6C_5QD5kD7DYl4/view?usp=sharing"
+            href="https://conexaoceara.com.br/midia-kit-2025.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`transition ${
