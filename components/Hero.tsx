@@ -36,7 +36,7 @@ export default function Hero({ isDark }: HeroProps) {
   return (
     <section
       id="about"
-      className={`relative flex flex-col items-center justify-center text-center min-h-screen w-full overflow-hidden ${bgColor} ${textColor} px-4 transition-colors duration-300`}
+      className={`relative flex flex-col items-center justify-center text-center min-h-screen w-full overflow-hidden ${bgColor} ${textColor} px-4 pt-28 md:pt-0 transition-colors duration-300`}
     >
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 pointer-events-none">
@@ -177,8 +177,8 @@ export default function Hero({ isDark }: HeroProps) {
         </Reveal>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 flex justify-center z-10">
+      {/* Scroll Indicator - hidden on mobile */}
+      <div className="absolute bottom-10 justify-center z-10 hidden md:flex">
         <div className="w-5 h-8 border-2 border-cyan-200 rounded-full flex justify-center">
           <div className="w-1 h-2 bg-cyan-100 rounded-full mt-1 animate-bounce"></div>
         </div>
