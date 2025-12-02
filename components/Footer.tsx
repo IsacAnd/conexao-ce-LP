@@ -1,6 +1,7 @@
 "use client";
 
 import simbol from "@/public/simbol.png";
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 
 interface HeroProps {
@@ -33,6 +34,15 @@ export default function Footer({ isDark }: HeroProps) {
             reservados.
           </p>
         </div>
+        <a
+          href="https://www.instagram.com/conexaoce.oficial/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram Conexão Ceará"
+          className={`${linkHover} transition-transform hover:scale-110`}
+        >
+          <Instagram size={20} />
+        </a>
         {/* <div className="flex gap-6 text-sm font-outfit">
           <Link
             href="#privacidade"
