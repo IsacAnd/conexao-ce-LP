@@ -216,6 +216,16 @@ export default function Header({ isDark, toggleTheme }: HeaderProps) {
                 Localização
               </button>
             </li>
+            <li>
+              <a
+                href="https://conexaoceara.com.br/midia-kit-2025.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+              >
+                MídiaKit
+              </a>
+            </li>
           </ul>
         </nav>
       )}

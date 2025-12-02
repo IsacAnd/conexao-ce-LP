@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Countdown from "./Countdown";
 import Reveal from "./Reveal";
 
 interface HeroProps {
@@ -20,42 +20,12 @@ interface HeroProps {
 }
 
 export default function Hero({ isDark }: HeroProps) {
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    const calculateCountdown = () => {
-      const eventDate = new Date("2025-12-13T09:00:00-03:00").getTime();
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      if (distance > 0) {
-        setCountdown({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          ),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      }
-    };
-
-    calculateCountdown();
-    const interval = setInterval(calculateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const bgColor = isDark
     ? "bg-[#248DA0]"
@@ -146,32 +116,7 @@ export default function Hero({ isDark }: HeroProps) {
 
         {/* Countdown Timer */}
         <Reveal delay={0.3}>
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <div className={`${cardBg} rounded-xl p-4 min-w-[80px]`}>
-              <div className="text-3xl sm:text-4xl font-bold font-league-spartan text-[#FFB237]">
-                {countdown.days}
-              </div>
-              <div className="text-xs text-cyan-100 mt-1">Dias</div>
-            </div>
-            <div className={`${cardBg} rounded-xl p-4 min-w-[80px]`}>
-              <div className="text-3xl sm:text-4xl font-bold font-league-spartan text-[#FFB237]">
-                {countdown.hours}
-              </div>
-              <div className="text-xs text-cyan-100 mt-1">Horas</div>
-            </div>
-            <div className={`${cardBg} rounded-xl p-4 min-w-[80px]`}>
-              <div className="text-3xl sm:text-4xl font-bold font-league-spartan text-[#FFB237]">
-                {countdown.minutes}
-              </div>
-              <div className="text-xs text-cyan-100 mt-1">Min</div>
-            </div>
-            <div className={`${cardBg} rounded-xl p-4 min-w-[80px]`}>
-              <div className="text-3xl sm:text-4xl font-bold font-league-spartan text-[#FFB237]">
-                {countdown.seconds}
-              </div>
-              <div className="text-xs text-cyan-100 mt-1">Seg</div>
-            </div>
-          </div>
+          <Countdown cardBg={cardBg} />
         </Reveal>
 
         {/* Event Info Pills */}
