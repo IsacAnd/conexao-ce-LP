@@ -162,7 +162,7 @@ export default function Hero({ isDark }: HeroProps) {
 
         {/* CTAs */}
         <Reveal delay={0.5}>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-10 md:mb-0">
             <button
               onClick={() => scrollToSection("registration")}
               className="bg-white text-[#155E6C] font-semibold hover:bg-cyan-100 px-6 py-3 rounded-full shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center gap-2 cursor-pointer"
