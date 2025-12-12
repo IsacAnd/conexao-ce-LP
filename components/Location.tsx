@@ -101,9 +101,8 @@ export default function Location({ isDark }: HeroProps) {
         <div className="text-center mb-16">
           <Reveal>
             <h2
-              className={`text-5xl font-bold mb-4 font-league-spartan ${
-                isDark ? "text-white" : "text-neutral-900"
-              }`}
+              className={`text-5xl font-bold mb-4 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
+                }`}
             >
               Local do Evento
             </h2>
@@ -148,11 +147,10 @@ export default function Location({ isDark }: HeroProps) {
                   prevImage();
                   setIsAutoPlaying(false);
                 }}
-                className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${
-                  isDark
-                    ? "bg-white/20 hover:bg-white/30"
-                    : "bg-black/20 hover:bg-black/30"
-                } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
+                className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${isDark
+                  ? "bg-white/20 hover:bg-white/30"
+                  : "bg-black/20 hover:bg-black/30"
+                  } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
                 aria-label="Imagem anterior"
               >
                 <ChevronLeft
@@ -166,11 +164,10 @@ export default function Location({ isDark }: HeroProps) {
                   nextImage();
                   setIsAutoPlaying(false);
                 }}
-                className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${
-                  isDark
-                    ? "bg-white/20 hover:bg-white/30"
-                    : "bg-black/20 hover:bg-black/30"
-                } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full ${isDark
+                  ? "bg-white/20 hover:bg-white/30"
+                  : "bg-black/20 hover:bg-black/30"
+                  } backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer`}
                 aria-label="Próxima imagem"
               >
                 <ChevronRight
@@ -185,15 +182,14 @@ export default function Location({ isDark }: HeroProps) {
                   <button
                     key={index}
                     onClick={() => goToImage(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      index === currentImageIndex
-                        ? isDark
-                          ? "bg-white w-8"
-                          : "bg-black w-8"
-                        : isDark
+                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
+                      ? isDark
+                        ? "bg-white w-8"
+                        : "bg-black w-8"
+                      : isDark
                         ? "bg-white/50 hover:bg-white/70"
                         : "bg-black/50 hover:bg-black/70"
-                    }`}
+                      }`}
                     aria-label={`Ir para imagem ${index + 1}`}
                   />
                 ))}
@@ -201,9 +197,8 @@ export default function Location({ isDark }: HeroProps) {
 
               {/* Contador de imagens */}
               <div
-                className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-sm font-medium ${
-                  isDark ? "bg-black/40 text-white" : "bg-white/40 text-black"
-                } backdrop-blur-sm`}
+                className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-sm font-medium ${isDark ? "bg-black/40 text-white" : "bg-white/40 text-black"
+                  } backdrop-blur-sm`}
               >
                 {currentImageIndex + 1} / {venueImages.length}
               </div>
@@ -224,9 +219,8 @@ export default function Location({ isDark }: HeroProps) {
                 {/* Endereço */}
                 <div className="flex items-start gap-2 lg:gap-3 mb-3 lg:mb-4">
                   <MapPin
-                    className={`w-5 h-5 lg:w-6 lg:h-6 mt-1 shrink-0 ${
-                      isDark ? "text-[#FFB237]" : "text-[#223a3f]"
-                    }`}
+                    className={`w-5 h-5 lg:w-6 lg:h-6 mt-1 shrink-0 ${isDark ? "text-[#FFB237]" : "text-[#223a3f]"
+                      }`}
                   />
                   <div>
                     <h4

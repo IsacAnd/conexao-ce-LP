@@ -170,9 +170,13 @@ export default function Hero({ isDark }: HeroProps) {
               Garanta sua vaga GRATUITA
               <ExternalLink size={18} />
             </button>
-            <div className="border border-white/40 text-white/60 rounded-full px-6 py-3 flex items-center gap-2 cursor-not-allowed">
-              Programação em Breve
-            </div>
+            <button
+              onClick={() => scrollToSection("schedule")}
+              className="bg-[#FFB237] text-white font-semibold hover:bg-[#f0a530] px-6 py-3 rounded-full shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center gap-2 cursor-pointer"
+            >
+              Confira nossa programação
+              <Calendar size={18} />
+            </button>
           </div>
         </Reveal>
       </div>
