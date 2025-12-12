@@ -12,7 +12,7 @@ import {
   Star,
 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 
 interface RestaurantProps {
@@ -146,9 +146,9 @@ function RestaurantCard({
   return (
     <motion.div
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className={`rounded-xl overflow-hidden shadow-lg transition-shadow duration-300 h-[650px] flex flex-col ${
+      className={`relative rounded-xl overflow-hidden shadow-lg transition-shadow duration-300 h-[650px] flex flex-col ${
         isDark ? "bg-[rgba(255,255,255,0.08)]" : "bg-white"
-      } hover:shadow-2xl`}
+      } hover:shadow-2xl hover:z-10`}
     >
       {/* Image Section */}
       <div className="relative h-48 w-full bg-gradient-to-br from-[#248DA0] to-[#1a6d7d] flex-shrink-0">
@@ -280,18 +280,40 @@ function RestaurantCard({
 export default function LunchRecommendations({ isDark }: RestaurantProps) {
   const [scrollContainerElement, setScrollContainerElement] =
     useState<HTMLDivElement | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  useEffect(() => {
+    if (!scrollContainerElement) return;
+
+    const checkScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerElement;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth);
+    };
+
+    checkScroll();
+    scrollContainerElement.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+
+    return () => {
+      scrollContainerElement.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [scrollContainerElement]);
 
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-white";
   const textSecondary = isDark ? "text-[#d0d0d0b3]" : "text-neutral-600";
 
   const handlePrev = () => {
     if (scrollContainerElement) {
-      const cardWidth =
-        scrollContainerElement.querySelector(".restaurant-card")?.clientWidth ||
-        0;
-      const gap = 24; // gap-6 = 24px
-      scrollContainerElement.scrollBy({
-        left: -(cardWidth * 3 + gap * 3),
+      const containerWidth = scrollContainerElement.clientWidth;
+      const newScrollLeft = Math.max(
+        0,
+        scrollContainerElement.scrollLeft - containerWidth
+      );
+      scrollContainerElement.scrollTo({
+        left: newScrollLeft,
         behavior: "smooth",
       });
     }
@@ -299,12 +321,14 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
 
   const handleNext = () => {
     if (scrollContainerElement) {
-      const cardWidth =
-        scrollContainerElement.querySelector(".restaurant-card")?.clientWidth ||
-        0;
-      const gap = 24; // gap-6 = 24px
-      scrollContainerElement.scrollBy({
-        left: cardWidth * 3 + gap * 3,
+      const containerWidth = scrollContainerElement.clientWidth;
+      const maxScrollLeft = scrollContainerElement.scrollWidth - containerWidth;
+      const newScrollLeft = Math.min(
+        maxScrollLeft,
+        scrollContainerElement.scrollLeft + containerWidth
+      );
+      scrollContainerElement.scrollTo({
+        left: newScrollLeft,
         behavior: "smooth",
       });
     }
@@ -313,7 +337,7 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
   return (
     <section
       id="lunch"
-      className={`relative flex justify-center items-center min-h-screen ${bgColor} overflow-hidden px-6 transition-colors duration-300 py-20`}
+      className={`relative flex justify-center items-center min-h-screen ${bgColor} px-6 transition-colors duration-300 py-20`}
     >
       {/* Background Symbol */}
       <div className="absolute right-10 top-1/3 opacity-10 w-[500px] h-[500px] z-0">
@@ -346,36 +370,40 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
         </Reveal>
 
         {/* Carousel Container */}
-        <div className="relative px-12 lg:px-20">
+        <div className="relative px-6 md:px-12 lg:px-20 overflow-hidden">
           {/* Navigation Buttons */}
-          <button
-            onClick={handlePrev}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
-              isDark
-                ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
-                : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
-            }`}
-            aria-label="Anterior"
-          >
-            <ChevronLeft size={24} />
-          </button>
+          {canScrollLeft && (
+            <button
+              onClick={handlePrev}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
+                isDark
+                  ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
+                  : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
+              }`}
+              aria-label="Anterior"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          )}
 
-          <button
-            onClick={handleNext}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
-              isDark
-                ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
-                : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
-            }`}
-            aria-label="Próximo"
-          >
-            <ChevronRight size={24} />
-          </button>
+          {canScrollRight && (
+            <button
+              onClick={handleNext}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 cursor-pointer ${
+                isDark
+                  ? "bg-[#248DA0] hover:bg-[#1f7e8f] text-white"
+                  : "bg-white hover:bg-[#248DA0] text-[#248DA0] hover:text-white shadow-lg"
+              }`}
+              aria-label="Próximo"
+            >
+              <ChevronRight size={24} />
+            </button>
+          )}
 
           {/* Scroll Horizontal Container */}
           <div
             ref={setScrollContainerElement}
-            className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide pb-4 cursor-grab active:cursor-grabbing select-none -mx-6 px-6"
+            className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-12 select-none -mt-10"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -414,7 +442,7 @@ export default function LunchRecommendations({ isDark }: RestaurantProps) {
             {restaurants.map((restaurant) => (
               <div
                 key={restaurant.id}
-                className="restaurant-card flex-none w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                className="restaurant-card flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
                 style={{ scrollSnapAlign: "start" }}
               >
                 <RestaurantCard restaurant={restaurant} isDark={isDark} />

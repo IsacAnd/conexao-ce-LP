@@ -41,10 +41,19 @@ function CountdownTimer({ cardBg }: CountdownProps) {
   return (
     <div className="flex flex-wrap justify-center gap-3 mb-8">
       {[
-        { value: countdown.days, label: "Dias" },
-        { value: countdown.hours, label: "Horas" },
-        { value: countdown.minutes, label: "Min" },
-        { value: countdown.seconds, label: "Seg" },
+        { value: countdown.days, label: countdown.days > 1 ? "Dias" : "Dia" },
+        {
+          value: countdown.hours,
+          label: countdown.hours > 1 ? "Horas" : "Hora",
+        },
+        {
+          value: countdown.minutes,
+          label: countdown.minutes > 1 ? "Mins" : "Min",
+        },
+        {
+          value: countdown.seconds,
+          label: countdown.seconds > 1 ? "Segs" : "Seg",
+        },
       ].map((item) => (
         <div
           key={item.label}

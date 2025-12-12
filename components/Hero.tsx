@@ -99,7 +99,7 @@ export default function Hero({ isDark }: HeroProps) {
         <Image src={simbol} alt="" fill className="object-contain" />
       </div>
 
-      <div className="relative z-10 max-w-4xl">
+      <div className="relative z-10 max-w-4xl mt-[7rem]">
         <Reveal delay={0.15}>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-[#FFB237] mb-4 drop-shadow-[0_0_25px_rgba(56,189,248,0.4)] font-league-spartan">
             Conexão Ceará
@@ -177,12 +177,12 @@ export default function Hero({ isDark }: HeroProps) {
         </Reveal>
       </div>
 
-      {/* Scroll Indicator - hidden on mobile */}
+      {/* Scroll Indicator - hidden on mobile
       <div className="absolute bottom-10 justify-center z-10 hidden md:flex">
         <div className="w-5 h-8 border-2 border-cyan-200 rounded-full flex justify-center">
           <div className="w-1 h-2 bg-cyan-100 rounded-full mt-1 animate-bounce"></div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
