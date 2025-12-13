@@ -69,8 +69,7 @@ const schedule: ScheduleItem[] = [
   // ======== TARDE – COWORKING =========
   {
     time: "13:30 - 14:30",
-    title:
-      "Explorando a realidade estendida (XR) na Web",
+    title: "Explorando a realidade estendida (XR) na Web",
     speaker: "João Paulo de Abreu Militão",
     location: "Sala Coworking",
     type: "Talk",
@@ -98,7 +97,8 @@ const schedule: ScheduleItem[] = [
 
   {
     time: "16:30 - 17:30",
-    title: "Palestra",
+    title:
+      "Design Patterns & Design Principles: A Engenharia Invisível do Software",
     speaker: "Kossi Sedjro Mawuli Dominique Houessou",
     location: "Sala Coworking",
     type: "Talk",
@@ -146,8 +146,9 @@ export default function Schedule({ isDark }: ScheduleProps) {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <Reveal>
           <h2
-            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
-              }`}
+            className={`text-5xl font-bold mb-2 font-league-spartan ${
+              isDark ? "text-white" : "text-neutral-900"
+            }`}
           >
             Programação
           </h2>
@@ -155,8 +156,9 @@ export default function Schedule({ isDark }: ScheduleProps) {
 
         <Reveal delay={0.2}>
           <p
-            className={`mb-12 text-center max-w-md ${isDark ? "text-neutral-300" : "text-neutral-600"
-              }`}
+            className={`mb-12 text-center max-w-md ${
+              isDark ? "text-neutral-300" : "text-neutral-600"
+            }`}
           >
             Um dia de aprendizado, inovação e conexões.
           </p>
@@ -216,8 +218,9 @@ export default function Schedule({ isDark }: ScheduleProps) {
                 >
                   <div className="flex items-center gap-4">
                     <Clock
-                      className={`w-6 h-6 flex-shrink-0 ${isDark ? "text-neutral-300" : "text-neutral-600"
-                        }`}
+                      className={`w-6 h-6 flex-shrink-0 ${
+                        isDark ? "text-neutral-300" : "text-neutral-600"
+                      }`}
                     />
 
                     <div>
