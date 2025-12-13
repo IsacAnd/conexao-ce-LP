@@ -51,10 +51,10 @@ export default function Home() {
         {/* TODO: Implementar página de programação após fechar grade */}
         <Registration isDark={isDark} />
         <Location isDark={isDark} />
+        <Schedule isDark={isDark} />
         {/* TODO: Implementar página de palestrantes após fechar grade */}
         {/* <Speakers isDark={isDark} /> */}
         <LunchPlaces isDark={isDark} />
-        <Schedule isDark={isDark} />
         <Footer isDark={isDark} />
       </div>
       <BackToTop isDark={isDark} />
