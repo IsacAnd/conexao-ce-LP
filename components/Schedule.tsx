@@ -69,7 +69,8 @@ const schedule: ScheduleItem[] = [
   // ======== TARDE – COWORKING =========
   {
     time: "13:30 - 14:30",
-    title: "Design Patterns & Design Principles: A Engenharia Invisível do Software",
+    title:
+      "Design Patterns & Design Principles: A Engenharia Invisível do Software",
     speaker: "Leonardo Carneiro",
     location: "Sala Coworking",
     type: "Talk",
@@ -86,7 +87,8 @@ const schedule: ScheduleItem[] = [
   },
   {
     time: "15:30 - 16:30",
-    title: "A Importância do Registro de Marca no INPI para a Segurança Jurídica e Comercial do seu Negócio",
+    title:
+      "A Importância do Registro de Marca no INPI para a Segurança Jurídica e Comercial do seu Negócio",
     speaker: "Thiago Macário Lima Pinheiro",
     location: "Sala Coworking",
     type: "Talk",
@@ -104,8 +106,8 @@ const schedule: ScheduleItem[] = [
     period: "Tarde",
   },
   {
-    time: "15:30 - 17:30",
-    title: "Oficina",
+    time: "15:30 - 16:30",
+    title: "Oficina de Hardware",
     speaker: "Ardulab + Nucllic",
     location: "Sala Secitece",
     type: "Talk",
@@ -128,7 +130,9 @@ export default function Schedule({ isDark }: ScheduleProps) {
 
   const bgColor = isDark ? "bg-[var(--neutral-dark)]" : "bg-neutral-50";
   const textColor = isDark ? "text-neutral-light" : "text-neutral-dark";
-  const borderColor = isDark ? "border-neutral-700/50" : "border-neutral-300/50";
+  const borderColor = isDark
+    ? "border-neutral-700/50"
+    : "border-neutral-300/50";
 
   const azul = "#248DA0";
 
@@ -142,7 +146,8 @@ export default function Schedule({ isDark }: ScheduleProps) {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <Reveal>
           <h2
-            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"}`}
+            className={`text-5xl font-bold mb-2 font-league-spartan ${isDark ? "text-white" : "text-neutral-900"
+              }`}
           >
             Programação
           </h2>
@@ -150,7 +155,8 @@ export default function Schedule({ isDark }: ScheduleProps) {
 
         <Reveal delay={0.2}>
           <p
-            className={`mb-12 text-center max-w-md ${isDark ? "text-neutral-300" : "text-neutral-600"}`}
+            className={`mb-12 text-center max-w-md ${isDark ? "text-neutral-300" : "text-neutral-600"
+              }`}
           >
             Um dia de aprendizado, inovação e conexões.
           </p>
@@ -200,26 +206,33 @@ export default function Schedule({ isDark }: ScheduleProps) {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={`flex flex-col md:flex-row md:items-center justify-between px-6 py-5 rounded-2xl border transition-transform duration-500 ease-out ${borderColor}`}
                   style={{
-                    backgroundColor: isDark ? `${accentColor}25` : `${accentColor}15`,
+                    backgroundColor: isDark
+                      ? `${accentColor}25`
+                      : `${accentColor}15`,
                     borderLeft: `5px solid ${accentColor}`,
-                    transform: isHovered
-                      ? "scale(1.04)"
-                      : "scale(1)",
+                    transform: isHovered ? "scale(1.04)" : "scale(1)",
                     opacity: hoveredIndex === null || isHovered ? 1 : 0.8,
                   }}
                 >
                   <div className="flex items-center gap-4">
                     <Clock
-                      className={`w-6 h-6 flex-shrink-0 ${isDark ? "text-neutral-300" : "text-neutral-600"}`}
+                      className={`w-6 h-6 flex-shrink-0 ${isDark ? "text-neutral-300" : "text-neutral-600"
+                        }`}
                     />
 
                     <div>
-                      <p className="font-semibold text-lg" style={{ color: textColorValue }}>
+                      <p
+                        className="font-semibold text-lg"
+                        style={{ color: textColorValue }}
+                      >
                         {item.title}
                       </p>
 
                       {item.speaker && (
-                        <p className="text-sm" style={{ color: subTextColorValue }}>
+                        <p
+                          className="text-sm"
+                          style={{ color: subTextColorValue }}
+                        >
                           {item.speaker}
                         </p>
                       )}
@@ -264,7 +277,6 @@ export default function Schedule({ isDark }: ScheduleProps) {
           className="object-contain"
         />
       </div>
-
     </section>
   );
 }
