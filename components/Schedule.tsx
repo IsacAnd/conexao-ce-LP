@@ -70,8 +70,8 @@ const schedule: ScheduleItem[] = [
   {
     time: "13:30 - 14:30",
     title:
-      "Design Patterns & Design Principles: A Engenharia Invisível do Software",
-    speaker: "Leonardo Carneiro",
+      "Explorando a realidade estendida (XR) na Web",
+    speaker: "João Paulo de Abreu Militão",
     location: "Sala Coworking",
     type: "Talk",
     room: "Coworking",
@@ -108,7 +108,7 @@ const schedule: ScheduleItem[] = [
   {
     time: "15:30 - 17:30",
     title: "Oficina de Hardware",
-    speaker: "Ardulab + Nucllic",
+    speaker: "Ardulab e Nucllic",
     location: "Sala Secitece",
     type: "Talk",
     room: "Secitece",
