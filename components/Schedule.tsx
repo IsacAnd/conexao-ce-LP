@@ -106,7 +106,7 @@ const schedule: ScheduleItem[] = [
     period: "Tarde",
   },
   {
-    time: "15:30 - 16:30",
+    time: "15:30 - 17:30",
     title: "Oficina de Hardware",
     speaker: "Ardulab + Nucllic",
     location: "Sala Secitece",
